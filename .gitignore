@@ -1,6 +1,7 @@
 node_modules/
 dist/
 *.zip
+!ps5-dashboard.zip
 __pycache__/
 *.pyc
 .DS_Store

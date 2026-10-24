@@ -72,7 +72,8 @@ A [Decky Loader](https://decky.xyz) plugin for the Steam Deck and other handheld
 ### From the release ZIP
 
 1. Install [Decky Loader](https://decky.xyz) if you haven't already.
-2. Download **`ps5-dashboard.zip`** from the [latest release](https://github.com/kromossomom-debug/decky-ps5-dashboard/releases/latest).
+2. Download **`ps5-dashboard.zip`** from the [latest release](https://github.com/kromossomom-debug/decky-ps5-dashboard/releases/latest)
+   (it's also in the repository root: [`ps5-dashboard.zip`](ps5-dashboard.zip)).
 3. In Game Mode, open **Quick Access (`…`) → Decky → ⚙ Settings → General** and turn on **Developer mode**.
 4. Go to **Developer → Install plugin from ZIP** and pick `ps5-dashboard.zip`.
 5. Open **Quick Access → Decky → PS5 Dashboard** to adjust it.
