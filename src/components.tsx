@@ -123,6 +123,11 @@ export function Tile(p: TileProps) {
       actionDescriptionMap={p.onMenu ? { [GamepadButton.SELECT]: t.gameMenu } : undefined}
     >
       <div className="psd-tile-box">
+        {p.size === "home" && (
+          <div className="psd-tile-aura">
+            <div className="psd-tile-aura-spin" />
+          </div>
+        )}
         <div className="psd-tile-art">{p.children}</div>
         <div className="psd-tile-ring" />
         {p.badge}

@@ -100,12 +100,12 @@ export const PS5_CSS = `
  * the page being laid out again:
  *  - the row slides by whole slots (set from JS) so the selected game sits at the left edge;
  *  - tiles keep a small fixed slot; the selected one scales its art box up to full size;
- *  - tiles after it shift right to make room for the big tile and its name;
- *  - tiles before it fade out instead of peeking in at the edge.
+ *  - tiles after it shift right just enough for the big tile, and its name sits under them;
+ *  - the tile right before it peeks in at the left edge; earlier ones fade out.
  * The section clips (overflow: clip can't be scrolled, so focus can't push the row away).
  */
 .psd-home-row {
-  --psd-slot: 12vh; --psd-big: 18vh; --psd-gap: 1.8vh; --psd-name: 36vh;
+  --psd-slot: 12vh; --psd-big: 18vh; --psd-gap: 1.8vh;
   margin-top: 0; padding: 3vh 0 3.6vh; overflow: hidden; overflow: clip;
   animation: psd-intro 600ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 }
@@ -246,21 +246,47 @@ export const PS5_CSS = `
   transform: scale(0.6667); transform-origin: 0 0;
   transition: transform 340ms cubic-bezier(0.22, 0.8, 0.24, 1);
 }
-.psd-tile-home.psd-focused .psd-tile-box, .psd-tile-home.psd-selected .psd-tile-box { transform: none; }
+.psd-tile-home.psd-selected .psd-tile-box { transform: none; }
+/* Focused: the tile lifts a little, like the PS5. */
+.psd-tile-home.psd-focused .psd-tile-box { transform: translate3d(0, -0.7vh, 0); }
 .psd-tile-home.psd-selected ~ .psd-tile-home {
-  transform: translate3d(calc(var(--psd-big) - var(--psd-slot) + var(--psd-name)), 0, 0);
+  transform: translate3d(calc(var(--psd-big) - var(--psd-slot)), 0, 0);
 }
-.psd-tile-home:has(~ .psd-selected) { opacity: 0; }
+.psd-tile-home:has(~ .psd-selected):not(:has(+ .psd-selected)) { opacity: 0; }
+/* Soft glow and a drop shadow; the edge itself is the aura below. */
+.psd-tile-home .psd-tile-ring {
+  box-shadow: 0 0 2.6vh color-mix(in srgb, var(--f) 30%, transparent), 0 1.6vh 3.2vh rgba(0,0,0,0.55);
+}
+/*
+ * The PS5 glass aura: a light band that keeps circling the focused tile's edge. A conic gradient
+ * sits behind the art, a hair bigger than it, and only rotates: a transform the GPU runs on its
+ * own, with nothing repainted per frame. It exists only on the focused tile.
+ */
+.psd-tile-aura {
+  position: absolute; inset: -0.45vh; border-radius: calc(var(--r) * 1.3 + 0.45vh);
+  overflow: hidden; opacity: 0; transition: opacity 200ms ease;
+}
+.psd-tile-aura-spin {
+  position: absolute; left: -50%; top: -50%; width: 200%; height: 200%;
+  background: conic-gradient(
+    var(--f), rgba(255,255,255,0.18) 18%, rgba(0,0,0,0.35) 32%, color-mix(in srgb, var(--f) 75%, transparent) 50%,
+    rgba(255,255,255,0.22) 68%, rgba(0,0,0,0.3) 84%, var(--f)
+  );
+}
+.psd-tile-home.psd-focused .psd-tile-aura { opacity: 1; }
+.psd-tile-home.psd-focused .psd-tile-aura-spin { animation: psd-spin 3.2s linear infinite; }
+@keyframes psd-spin { to { transform: rotate(1turn); } }
+/* The name goes under the next tiles, like the PS5. */
 .psd-tile-home .psd-tile-name {
-  left: calc(var(--psd-big) + 2.6vh); right: auto; bottom: auto; top: calc(var(--psd-big) / 2);
-  width: calc(var(--psd-name) - 4.4vh); padding: 0; background: none; border-radius: 0;
-  font-size: 2.6vh; font-weight: 500; line-height: 1.25; white-space: normal;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  left: calc(var(--psd-big) + var(--psd-gap)); right: auto; bottom: auto; top: calc(var(--psd-slot) + 1.4vh);
+  width: max-content; max-width: 60vh; padding: 0; background: none; border-radius: 0;
+  font-size: 2.6vh; font-weight: 500; line-height: 1.25;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   text-shadow: 0 1px 6px rgba(0,0,0,0.85);
-  transform: translate3d(-1.5vh, -50%, 0); transition: opacity 200ms ease, transform 260ms ease;
+  transform: translate3d(0, -0.8vh, 0); transition: opacity 200ms ease, transform 260ms ease;
 }
 .psd-tile-home.psd-selected .psd-tile-name, .psd-tile-home.psd-focused .psd-tile-name {
-  opacity: 1; transform: translate3d(0, -50%, 0);
+  opacity: 1; transform: none;
 }
 
 .psd-not-installed .psd-cover { opacity: 0.55; }

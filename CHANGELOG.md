@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0
+
+- **Home row like the PS5.** The next games now sit right after the selected one instead of leaving a wide gap, and
+  the game's name moves under them. The tile before the selected one peeks in at the left edge.
+- **Lift and glass aura.** The focused game lifts slightly with a drop shadow, and a glass light band keeps circling
+  its edge, blending white, grey and translucent black. It only rotates (a GPU transform), so it costs nothing per
+  frame, and only the focused tile has it.
+
 ## 1.3.0
 
 - **Game options on Select.** Press Select (View) or ≡ on any game tile, on Home, in the lower rows or in the Game
