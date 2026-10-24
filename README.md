@@ -10,6 +10,7 @@ A [Decky Loader](https://decky.xyz) plugin for the Steam Deck and other handheld
 [![Downloads](https://img.shields.io/github/downloads/kromossomom-debug/decky-ps5-dashboard/total?color=0070D1)](https://github.com/kromossomom-debug/decky-ps5-dashboard/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-0070D1)](LICENSE)
 [![Decky Loader](https://img.shields.io/badge/Decky-Loader-0070D1)](https://decky.xyz)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/kromossomoc)
 
 <img src="docs/screenshots/home.jpg" alt="PS5 Dashboard home screen with God of War selected" width="100%">
 
@@ -183,8 +184,12 @@ main.py          Decky backend: settings and HowLongToBeat
 
 ## Support
 
-If you enjoy the plugin, you can [buy the author a coffee](https://buymeacoffee.com/kromossomoc). It helps keep it
-updated. Bug reports and ideas are welcome in [Issues](https://github.com/kromossomom-debug/decky-ps5-dashboard/issues).
+If you enjoy the plugin, you can buy the author a coffee. It helps keep it updated. The plugin's panel in Quick Access
+has a **Buy Me a Coffee** button too.
+
+<a href="https://buymeacoffee.com/kromossomoc"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" height="50"></a>
+
+Bug reports and ideas are welcome in [Issues](https://github.com/kromossomom-debug/decky-ps5-dashboard/issues).
 
 ## Disclaimer
 
