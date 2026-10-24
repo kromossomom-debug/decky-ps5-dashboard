@@ -4,6 +4,14 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
+
+# The panel shows VERSION from src/index.tsx; refuse to ship a ZIP that would show the wrong one.
+version="$(node -p 'require("./package.json").version')"
+if ! grep -q "const VERSION = \"$version\";" src/index.tsx; then
+  echo "src/index.tsx VERSION doesn't match package.json ($version)" >&2
+  exit 1
+fi
+
 npm run build
 
 stage="$(mktemp -d)"

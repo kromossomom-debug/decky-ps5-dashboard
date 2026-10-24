@@ -1,6 +1,6 @@
 {
   "name": "ps5-dashboard",
-  "version": "1.4.0",
+  "version": "1.6.0",
   "description": "Makes SteamOS Game Mode look and feel like the PlayStation 5 home screen",
   "type": "module",
   "scripts": {

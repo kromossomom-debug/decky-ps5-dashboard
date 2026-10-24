@@ -123,9 +123,11 @@ ${carousel.BasicGameCarouselItem}${carousel.IsFocused} ${carousel.BasicGameCarou
 ${carousel.BasicGameCarouselItem}.gpfocus ${carousel.BasicGameCarouselItemMediaContainer} {
   box-shadow: var(--psd-glow) !important;
 }
+/* Library capsules: a crisp white edge and a soft lift, not a wide bloom over the neighbours. */
 .gpfocus > ${portrait.LibraryItemBox}, ${portrait.LibraryItemBox}.gpfocus,
 ${portrait.Capsule}.gpfocus ${portrait.LibraryItemBox} {
-  box-shadow: var(--psd-glow) !important;
+  box-shadow: 0 0 0 3px var(--psd-focus), 0 0 14px color-mix(in srgb, var(--psd-focus) 22%, transparent),
+    0 12px 28px rgba(0,0,0,0.55) !important;
 }
 ${focusRing.FocusRing} {
   border-color: var(--psd-focus) !important;
@@ -146,11 +148,29 @@ ${header.HeaderOpaque} {
   background: rgba(5,7,13,0.9) !important;
 }`);
 
-  // ---------- Tabs (Library, Store...): bold white text when selected, white pill when focused ----------
+  // ---------- Tabbed pages (Library...): PS5 pills in sentence case on a navy page ----------
   parts.push(`
+${tabs.GamepadTabbedPage} {
+  background: radial-gradient(ellipse at 85% -20%, color-mix(in srgb, var(--psd-accent) 26%, #05070d) 0%, #070b16 40%, #05070d 75%);
+}
+${tabs.TabHeaderRowWrapper} {
+  background: transparent !important;
+}
 ${tabs.Tab} {
   border-radius: 999px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
   transition: background-color 120ms ease;
+}
+${tabs.TabTitle} {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-weight: 500 !important;
+}
+${tabs.TabCount} {
+  margin-left: 6px;
+  opacity: 0.6;
+  font-weight: 400 !important;
 }
 ${tabs.Tab}${tabs.Selected} {
   background: rgba(255,255,255,0.16) !important;
@@ -187,36 +207,71 @@ ${slider.SliderHandle} {
   if (st.controlCenter) {
     // Dark rounded panel, white focused item with dark text and a glow, accent mark on the current page.
     parts.push(`
-${mainMenu.Menu} {
-  background: var(--psd-panel) !important;
-  border: 1px solid rgba(255,255,255,0.06);
+${mainMenu.Menu}, ${mainMenu.DashboardMenu} {
+  --menu-background: transparent;
+  background: linear-gradient(180deg, rgba(18,22,38,0.96) 0%, rgba(8,10,20,0.97) 100%) !important;
+  border-right: 1px solid rgba(255,255,255,0.07);
   border-radius: 0 calc(var(--psd-radius) * 1.5) calc(var(--psd-radius) * 1.5) 0;
-  box-shadow: 12px 0 48px rgba(0,0,0,0.7);
+  box-shadow: 18px 0 60px rgba(0,0,0,0.65);
 }
 ${mainMenu.MainMenuEmbedded}, ${mainMenu.NavigationColumn} {
-  background: var(--psd-panel) !important;
+  background: transparent !important;
 }
+${mainMenu.NavigationColumn}::before { display: none !important; }
+/* Visible overflow so the focused pill's glow isn't cut into a hard band by its row. */
+${mainMenu.ItemOuter} {
+  background: transparent !important;
+  overflow: visible !important;
+  animation: none !important;
+}
+/*
+ * Steam scales the focused and the current item to 110%, which pushed the pill past the panel's edge
+ * (where ItemOuter clips it, losing its right corners). Border-box sizing and a tighter padding keep
+ * labels inside the item, so Steam doesn't switch them to its scrolling marquee.
+ */
 ${mainMenu.Item} {
-  border-radius: var(--psd-radius) !important;
-  margin: 3px 10px !important;
-  transition: background-color 120ms ease, box-shadow 120ms ease;
+  position: relative;
+  box-sizing: border-box !important;
+  border-radius: calc(var(--psd-radius) * 0.9) !important;
+  margin: 3px 12px !important;
+  width: calc(100% - 24px) !important;
+  padding: 0 10px 0 18px !important;
+  transform: none !important;
+  color: rgba(255,255,255,0.82) !important;
+  font-weight: 400 !important;
+  background: transparent !important;
+  animation: none !important;
+  transition: background-color 120ms ease, color 120ms ease, box-shadow 120ms ease;
 }
+${mainMenu.ItemIcon} { color: rgba(255,255,255,0.85) !important; fill: currentColor !important; }
+${mainMenu.ItemLabel} { max-width: none !important; overflow: hidden; text-overflow: ellipsis; font-size: 15px !important; }
+${mainMenu.Item}:hover { background: rgba(255,255,255,0.1) !important; }
+/* PS5 focus: a white pill with black text and a soft glow (Steam's translucent focus animation is dropped). */
 ${mainMenu.Item}.gpfocus, ${mainMenu.ItemOuter}.gpfocus ${mainMenu.Item} {
   background: #fff !important;
   color: #000 !important;
-  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+  animation: none !important;
+  transform: scale(1.02) !important;
+  box-shadow: 0 0 16px rgba(255,255,255,0.3);
 }
-${mainMenu.Item}.gpfocus *, ${mainMenu.ItemOuter}.gpfocus ${mainMenu.Item} * {
+${mainMenu.Item}.gpfocus *, ${mainMenu.ItemOuter}.gpfocus ${mainMenu.Item} *,
+${mainMenu.Item}.gpfocus ${mainMenu.ItemLabel}, ${mainMenu.Item}.gpfocus ${mainMenu.ItemIcon} {
   color: #000 !important;
   fill: #000 !important;
 }
-${mainMenu.Item}${mainMenu.Active} {
-  background: rgba(255,255,255,0.08);
-  box-shadow: inset 3px 0 0 var(--psd-accent);
+/* The page you're on: bold white text and a small PlayStation-blue dot. */
+${mainMenu.Item}${mainMenu.Active}:not(.gpfocus) {
+  color: #fff !important;
+  font-weight: 600 !important;
+  background: rgba(255,255,255,0.06) !important;
 }
 ${mainMenu.ActiveDot} {
+  width: 6px !important; height: 6px !important; border-radius: 50% !important;
+  left: 8px !important; top: calc(50% - 3px) !important;
   background: var(--psd-accent) !important;
+  box-shadow: 0 0 8px var(--psd-accent);
 }
+${mainMenu.ItemOuter}::after { background: rgba(255,255,255,0.07) !important; }
 ${mainMenu.CurrentUserAvatar} {
   border-radius: 50% !important;
 }
@@ -226,17 +281,34 @@ ${qam.Tabs} {
 ${qam.TabGroupPanel} {
   background: var(--psd-panel) !important;
 }
-${qam.Tab} {
-  border-radius: 50% !important;
+/*
+ * Steam's tabs are 48 px wide and 64 px tall, so rounding the tab itself gives an oval, and focus adds
+ * a 110% scale with a clip. The tab stays transparent; a fixed 42 px circle behind the icon is the
+ * highlight instead.
+ */
+${qam.Tab}, ${qam.Tab}${qam.Selected}, ${qam.Tab}.gpfocus, ${qam.Tab}${qam.Selected}.gpfocus {
+  position: relative;
+  background: transparent !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  clip-path: none !important;
+  animation: none !important;
 }
-${qam.Tab}${qam.Selected} {
-  background: rgba(255,255,255,0.14) !important;
+${qam.Tab}::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 42px; height: 42px;
+  margin: -21px 0 0 -21px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 120ms ease, box-shadow 120ms ease;
 }
-${qam.Tab}.gpfocus {
-  background: #fff !important;
-  box-shadow: 0 0 18px rgba(255,255,255,0.35);
-}
-${qam.Tab}.gpfocus svg, ${qam.Tab}.gpfocus * {
+${qam.Tab}${qam.Selected}::before { background: rgba(255,255,255,0.16); }
+${qam.Tab}.gpfocus::before { background: #fff; box-shadow: 0 0 16px rgba(255,255,255,0.35); }
+${qam.Tab} svg { position: relative; z-index: 1; transform: none !important; }
+${qam.Tab}${qam.Selected}:not(.gpfocus) { color: #fff !important; }
+${qam.Tab}.gpfocus, ${qam.Tab}.gpfocus svg, ${qam.Tab}.gpfocus * {
   color: #000 !important;
   fill: #000 !important;
 }

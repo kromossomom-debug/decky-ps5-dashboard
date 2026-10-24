@@ -108,7 +108,8 @@ function PlaytimeCard({ app, onFocus }: { app: App; onFocus: () => void }) {
   return (
     <InfoCard icon={<MdSchedule />} title={t.cardPlaytime} size="s" label={t.details} onActivate={() => openDetails(app)} onFocus={onFocus}>
       <div className="psd-infocard-big">{total > 0 ? formatDuration(total) : "—"}</div>
-      <div className="psd-infocard-caption">{total > 0 ? lastPlayedText(app) : t.cardPlaytimeNever}</div>
+      {/* Steam often doesn't count time in non-Steam shortcuts, but still knows when you last played them. */}
+      <div className="psd-infocard-caption">{app.rt_last_time_played || total > 0 ? lastPlayedText(app) : t.cardPlaytimeNever}</div>
       {recent > 0 && <div className="psd-infocard-caption">{t.cardTwoWeeks(formatDuration(recent))}</div>}
     </InfoCard>
   );

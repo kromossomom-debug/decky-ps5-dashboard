@@ -5,6 +5,8 @@ import { prune, repaint, restore, restoreAll } from "./palette";
 const STYLE_ID = "ps5-dashboard-theme";
 /** Game Mode windows to style: the main UI, Quick Access and the Steam menu. Desktop windows are left alone. */
 const POPUP_NAME = /^(SP(?! Desktop)|QuickAccess|MainMenu)/;
+/** Titles of the Steam menu and Quick Access windows (e.g. "MainMenu_uid2"). */
+const NAV_WINDOW_TITLE = /^(MainMenu|QuickAccess)_/;
 const KEEPALIVE_MS = 2000;
 
 let css = "";
@@ -28,6 +30,19 @@ function targetDocuments(): Document[] {
     });
   } catch {
     // Popup manager internals changed; the main window above is still covered.
+  }
+  try {
+    // In Game Mode the Steam menu and Quick Access are separate browser windows that don't always show
+    // up in the popup manager; the controller navigation manager is where Steam keeps them.
+    const nav = (window as any).SteamUIStore?.m_GamepadNavigationManager ?? (window as any).FocusNavController;
+    for (const ctx of nav?.m_rgAllContexts ?? []) {
+      for (const tree of ctx?.m_rgGamepadNavigationTrees ?? []) {
+        const doc: Document | undefined = tree?.m_window?.document;
+        if (doc && NAV_WINDOW_TITLE.test(doc.title)) docs.add(doc);
+      }
+    }
+  } catch {
+    // Navigation internals changed; the windows found above are still covered.
   }
   return [...docs];
 }

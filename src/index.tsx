@@ -30,6 +30,9 @@ import { LIBRARY_ROUTE, openDonate } from "./steam";
 import { buildCss } from "./theme";
 import { Ps5Shell } from "./Shell";
 
+/** Shown in the panel so you can tell which build Steam has loaded. Kept in sync with package.json by scripts/package.sh. */
+const VERSION = "1.6.0";
+
 const getSettings = callable<[], Partial<Settings>>("get_settings");
 const setSettings = callable<[settings: Settings], boolean>("set_settings");
 
@@ -260,6 +263,9 @@ function Content() {
               <FaCoffee /> Buy Me a Coffee
             </span>
           </ButtonItem>
+        </PanelSectionRow>
+        <PanelSectionRow>
+          <div style={{ fontSize: "11px", opacity: 0.55, textAlign: "center", width: "100%" }}>PS5 Dashboard v{VERSION}</div>
         </PanelSectionRow>
       </PanelSection>
     </>

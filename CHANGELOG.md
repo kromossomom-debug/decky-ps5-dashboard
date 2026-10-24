@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.6.0
+
+- **Steam menu pills fixed.** Steam scaled the focused and the current item to 110%, pushing the pill past the
+  panel's edge, where it lost its right corners. Items now stay inside the panel, the focus gets a gentle 2% lift,
+  and its glow is no longer cut into a hard band.
+- **Long labels fit.** Items are sized so "Friends & Chat" and similar labels fit instead of turning into Steam's
+  scrolling marquee, and the focused label is always black on white.
+- **Quick Access tabs are real circles.** The tabs are 48 × 64 px, so rounding them gave stretched ovals; a fixed
+  circle behind the icon is the highlight now, without Steam's scale-and-clip focus effect.
+- **Steam's library looks like the PS5.** A navy gradient page, tabs as pills in sentence case with dimmed counts, and
+  a crisp white edge with a soft lift on the focused capsule instead of a wide white bloom.
+
+## 1.5.0
+
+- **Steam menu (left side) in PS5 style.** Dark navy glass panel, rounded items, a white focused item with black text
+  and a soft glow, and the current page in bold with a small PlayStation-blue dot. Steam's blue panel and its
+  translucent focus animation are gone.
+- **The theme now reaches the Steam menu and Quick Access windows.** In Game Mode they don't always appear in Steam's
+  popup list, so the plugin also looks them up through Steam's controller navigation, the way Steam itself tracks them.
+- **Your time** card: non-Steam games show when you last played them instead of "Not played yet".
+- The plugin panel shows its version, so you can check which build Steam has loaded.
+
 ## 1.4.0
 
 - **Home row like the PS5.** The next games now sit right after the selected one instead of leaving a wide gap, and
