@@ -1,0 +1,17 @@
+{
+  "name": "PS5 Dashboard",
+  "author": "kromossomo",
+  "flags": [],
+  "api_version": 1,
+  "publish": {
+    "tags": [
+      "theme",
+      "style",
+      "playstation",
+      "ps5",
+      "hltb"
+    ],
+    "description": "The PlayStation 5 home screen for SteamOS Game Mode: a game row on top, full-screen art, a white Play button, HowLongToBeat and achievement cards, and PS5 colors everywhere.",
+    "image": "https://raw.githubusercontent.com/kromossomom-debug/decky-ps5-dashboard/main/docs/screenshots/home.jpg"
+  }
+}
