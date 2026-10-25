@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.7.0
+
+- **New setting: Style Steam's library.** Turn it off to leave Steam's own library as Steam draws it (capsule corners,
+  focus, tabs and page background), for example to use TabMaster's tabs and sorting. The PS5 home screen, menus and
+  Game Library are not affected. Requested by a user on Reddit.
+
 ## 1.6.0
 
 - **Steam menu pills fixed.** Steam scaled the focused and the current item to 110%, pushing the pill past the

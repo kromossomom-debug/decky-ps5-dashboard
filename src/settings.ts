@@ -26,6 +26,8 @@ export interface Settings {
   infoCards: boolean;
   /** Look up HowLongToBeat times (one request per game, cached for a week). */
   hltb: boolean;
+  /** Restyle Steam's own library (capsules, focus, tabs). Off leaves it to Steam or plugins like TabMaster. */
+  steamLibrary: boolean;
 }
 
 /** PlayStation blues plus the DualSense / console cover colors. */
@@ -55,6 +57,7 @@ export const DEFAULT_SETTINGS: Settings = {
   font: true,
   infoCards: true,
   hltb: true,
+  steamLibrary: true,
 };
 
 export function accentColor(id: string): string {

@@ -100,15 +100,11 @@ ${recent.RecentGamesHeaderLabel} {
 
   // ---------- Tiles: rounded squares, flat, no Steam glow/shine ----------
   parts.push(`
-${carousel.BasicGameCarouselItemMediaContainer},
-${portrait.LibraryItemBox}, ${portrait.PortraitImage}, ${portrait.Capsule},
-${asset.Container}, ${asset.PortraitImage}, ${asset.LandscapeImage} {
+${carousel.BasicGameCarouselItemMediaContainer} {
   border-radius: var(--psd-radius) !important;
-}
-${carousel.BasicGameCarouselItemMediaContainer}, ${portrait.LibraryItemBox} {
   overflow: hidden;
 }
-${carousel.CarouselCapsuleBackgroundGlow}, ${portrait.LibraryItemBoxShine} {
+${carousel.CarouselCapsuleBackgroundGlow} {
   display: none !important;
 }
 ${carousel.CarouselGameLabel} {
@@ -122,12 +118,6 @@ ${carousel.CarouselGameLabel} {
 ${carousel.BasicGameCarouselItem}${carousel.IsFocused} ${carousel.BasicGameCarouselItemMediaContainer},
 ${carousel.BasicGameCarouselItem}.gpfocus ${carousel.BasicGameCarouselItemMediaContainer} {
   box-shadow: var(--psd-glow) !important;
-}
-/* Library capsules: a crisp white edge and a soft lift, not a wide bloom over the neighbours. */
-.gpfocus > ${portrait.LibraryItemBox}, ${portrait.LibraryItemBox}.gpfocus,
-${portrait.Capsule}.gpfocus ${portrait.LibraryItemBox} {
-  box-shadow: 0 0 0 3px var(--psd-focus), 0 0 14px color-mix(in srgb, var(--psd-focus) 22%, transparent),
-    0 12px 28px rgba(0,0,0,0.55) !important;
 }
 ${focusRing.FocusRing} {
   border-color: var(--psd-focus) !important;
@@ -148,8 +138,26 @@ ${header.HeaderOpaque} {
   background: rgba(5,7,13,0.9) !important;
 }`);
 
-  // ---------- Tabbed pages (Library...): PS5 pills in sentence case on a navy page ----------
-  parts.push(`
+  // ---------- Steam's own library: rounded capsules, PS5 focus, pill tabs on a navy page ----------
+  // Optional, so it can be left to Steam (or to plugins like TabMaster that rework the library).
+  if (st.steamLibrary) {
+    parts.push(`
+${portrait.LibraryItemBox}, ${portrait.PortraitImage}, ${portrait.Capsule},
+${asset.Container}, ${asset.PortraitImage}, ${asset.LandscapeImage} {
+  border-radius: var(--psd-radius) !important;
+}
+${portrait.LibraryItemBox} {
+  overflow: hidden;
+}
+${portrait.LibraryItemBoxShine} {
+  display: none !important;
+}
+/* Library capsules: a crisp white edge and a soft lift, not a wide bloom over the neighbours. */
+.gpfocus > ${portrait.LibraryItemBox}, ${portrait.LibraryItemBox}.gpfocus,
+${portrait.Capsule}.gpfocus ${portrait.LibraryItemBox} {
+  box-shadow: 0 0 0 3px var(--psd-focus), 0 0 14px color-mix(in srgb, var(--psd-focus) 22%, transparent),
+    0 12px 28px rgba(0,0,0,0.55) !important;
+}
 ${tabs.GamepadTabbedPage} {
   background: radial-gradient(ellipse at 85% -20%, color-mix(in srgb, var(--psd-accent) 26%, #05070d) 0%, #070b16 40%, #05070d 75%);
 }
@@ -183,6 +191,7 @@ ${tabs.Tab}.gpfocus {
   box-shadow: 0 0 18px rgba(255,255,255,0.35);
 }
 ${tabs.Tab}.gpfocus * { color: #000 !important; }`);
+  }
 
   // ---------- Play button: the PS5's white button; controls in the accent color ----------
   parts.push(`
