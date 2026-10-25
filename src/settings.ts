@@ -28,6 +28,8 @@ export interface Settings {
   hltb: boolean;
   /** Restyle Steam's own library (capsules, focus, tabs). Off leaves it to Steam or plugins like TabMaster. */
   steamLibrary: boolean;
+  /** The Game Library tile and shortcuts open Steam's own library (with TabMaster's tabs) instead of the PS5 one. */
+  openSteamLibrary: boolean;
 }
 
 /** PlayStation blues plus the DualSense / console cover colors. */
@@ -58,6 +60,7 @@ export const DEFAULT_SETTINGS: Settings = {
   infoCards: true,
   hltb: true,
   steamLibrary: true,
+  openSteamLibrary: false,
 };
 
 export function accentColor(id: string): string {

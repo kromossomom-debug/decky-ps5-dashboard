@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.8.0
+
+- **New setting: Open Steam's library.** When it's on, the Game Library tile at the end of the home row, its shortcut
+  cards, the Game Library shortcut and the Media tab's Apps card open Steam's own library instead of the PS5 Game
+  Library, so your TabMaster tabs and sorting are right there. The tile then shows "Steam Library". It's off by
+  default, so the PS5 Game Library stays the default. Requested by a user on Reddit.
+
 ## 1.7.0
 
 - **New setting: Style Steam's library.** Turn it off to leave Steam's own library as Steam draws it (capsule corners,

@@ -105,6 +105,7 @@ Everything lives in the plugin panel in Quick Access. Settings are saved to
 |---|---|---|
 | Enable PS5 look | Turns the whole theme on or off | On |
 | PS5 home screen | Replaces Steam's home with the PS5 one | On |
+| Open Steam's library | The Game Library tile and shortcuts open Steam's own library (handy with TabMaster) | Off |
 | Info cards | Cards under the Play button | On |
 | HowLongToBeat | Looks up how long each game takes to beat | On |
 | PS5 colors everywhere | Repaints Steam's own colors | On |

@@ -31,7 +31,7 @@ import { buildCss } from "./theme";
 import { Ps5Shell } from "./Shell";
 
 /** Shown in the panel so you can tell which build Steam has loaded. Kept in sync with package.json by scripts/package.sh. */
-const VERSION = "1.7.0";
+const VERSION = "1.8.0";
 
 const getSettings = callable<[], Partial<Settings>>("get_settings");
 const setSettings = callable<[settings: Settings], boolean>("set_settings");
@@ -144,6 +144,14 @@ function Content() {
             description={t.hltbDesc}
             checked={st.hltb}
             onChange={(hltb) => change({ hltb })}
+          />
+        </PanelSectionRow>
+        <PanelSectionRow>
+          <ToggleField
+            label={t.openSteamLibraryLabel}
+            description={t.openSteamLibraryDesc}
+            checked={st.openSteamLibrary}
+            onChange={(openSteamLibrary) => change({ openSteamLibrary })}
           />
         </PanelSectionRow>
         <PanelSectionRow>

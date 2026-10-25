@@ -21,6 +21,7 @@ import { Card, FOCUSED_CLASS, IconButton, useFocusReveal } from "./components";
 import { LibraryTab } from "./Library";
 import { t } from "./i18n";
 import { HomeTab } from "./Ps5Home";
+import { currentSettings } from "./settings";
 import { ROUTES, openStore, persona } from "./steam";
 import { PS5_CSS } from "./styles";
 
@@ -137,6 +138,11 @@ export function Ps5Shell({ initialTab = "games" }: { initialTab?: TabId }) {
   }, [tab]);
 
   const goTab = (next: TabId, view = "installed") => {
+    // Every way into the Game Library comes through here, so this one check covers them all.
+    if (next === "library" && currentSettings().openSteamLibrary) {
+      Navigation.Navigate(ROUTES.library);
+      return;
+    }
     setLibraryView(view);
     setTab(next);
   };

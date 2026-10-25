@@ -19,6 +19,7 @@ import {
 
 import { ActionTile, Art, Button, GameTile, Row } from "./components";
 import { ActionCard, ActionCards, GameCards } from "./InfoCards";
+import { currentSettings } from "./settings";
 import { t } from "./i18n";
 import {
   APP_TYPE_SHORTCUT,
@@ -177,10 +178,11 @@ const TopRow = memo(function TopRow({ recents, goTab, onTopRow }: TopRowProps) {
     ],
   };
   const count = (n: number) => String(n);
+  const steamLib = currentSettings().openSteamLibrary;
   const library: Pick = {
-    title: t.library,
-    description: t.libraryDesc,
-    icon: <IoLibrary />,
+    title: steamLib ? t.steamLibrary : t.library,
+    description: steamLib ? t.steamLibraryTileDesc : t.libraryDesc,
+    icon: steamLib ? <FaSteam /> : <IoLibrary />,
     go: () => goTab("library"),
     cards: [
       { icon: <MdCheckCircle />, title: t.cardInstalled, caption: count(installedApps().length), go: () => goTab("library", "installed") },
