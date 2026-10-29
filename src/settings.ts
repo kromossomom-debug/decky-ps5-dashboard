@@ -20,6 +20,8 @@ export interface Settings {
   controlCenter: boolean;
   /** Hide the shelves below Recent (What's New, Friends, Recommended). */
   hideShelves: boolean;
+  /** Hide the bottom button hint footer bar (A, B, X, Y). */
+  hideBottomBar: boolean;
   /** Use an SST (PlayStation) style font. */
   font: boolean;
   /** Cards under the Play button: HowLongToBeat, achievements, playtime, reviews. */
@@ -56,6 +58,7 @@ export const DEFAULT_SETTINGS: Settings = {
   focus: "white",
   controlCenter: true,
   hideShelves: false,
+  hideBottomBar: false,
   font: true,
   infoCards: true,
   hltb: true,

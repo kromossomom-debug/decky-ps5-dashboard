@@ -39,6 +39,8 @@ const pt = {
   steamLibraryDesc: "Capas arredondadas, foco e abas no estilo PS5 na biblioteca da Steam. Desligue para usar o visual original ou plugins como o TabMaster.",
   cleanHomeLabel: "Tela inicial limpa",
   cleanHomeDesc: "Esconde Novidades, Amigos e Recomendados abaixo dos jogos recentes.",
+  hideBottomBarLabel: "Ocultar barra inferior",
+  hideBottomBarDesc: "Esconde a barra de botões do controle (A, B, X, Y) que aparece na parte de baixo da tela.",
   fontLabel: "Fonte estilo PlayStation (SST)",
   resetDefaults: "Restaurar padrões",
   supportSection: "Apoie o projeto",
@@ -184,6 +186,8 @@ const en: Strings = {
   steamLibraryDesc: "PS5-style rounded capsules, focus and tabs in Steam's library. Turn off to keep Steam's own look or use plugins like TabMaster.",
   cleanHomeLabel: "Clean home screen",
   cleanHomeDesc: "Hides What's New, Friends and Recommended below the recent games.",
+  hideBottomBarLabel: "Hide bottom bar",
+  hideBottomBarDesc: "Hides the controller button hints bar (A, B, X, Y) at the bottom of the screen.",
   fontLabel: "PlayStation-style font (SST)",
   resetDefaults: "Reset to defaults",
   supportSection: "Support the project",
@@ -285,21 +289,57 @@ const en: Strings = {
   hoursPlayed: (n: number) => `${n} h played`,
 };
 
-/** Steam's UI language, e.g. "pt-br" or "en"; falls back to the browser's. */
+/**
+ * Maps Steam's internal language names (e.g. "brazilian", "schinese") to ISO locale prefixes.
+ */
+const STEAM_LANG_TO_LOCALE: Record<string, string> = {
+  brazilian: "pt", portuguese: "pt",
+  english: "en",
+  spanish: "es", latam: "es",
+  french: "fr", german: "de", italian: "it", russian: "ru",
+  schinese: "zh", tchinese: "zh", japanese: "ja", koreana: "ko",
+  dutch: "nl", polish: "pl", turkish: "tr", thai: "th",
+  czech: "cs", danish: "da", finnish: "fi", hungarian: "hu",
+  norwegian: "no", romanian: "ro", swedish: "sv", ukrainian: "uk",
+  vietnamese: "vi", greek: "el", bulgarian: "bg", arabic: "ar", indonesian: "id",
+};
+
+function normalizeLocale(raw?: string): string | null {
+  if (!raw) return null;
+  const lower = raw.toLowerCase().trim();
+  return STEAM_LANG_TO_LOCALE[lower] || lower;
+}
+
+/** Steam's UI language, normalised to an ISO locale prefix (e.g. "pt", "en"). */
 function steamLocale(): string {
   try {
     const locales: string[] | undefined = (window as any).LocalizationManager?.GetPreferredLocales?.();
-    if (locales?.[0]) return locales[0].toLowerCase();
-  } catch {
-    // fall through
-  }
+    if (locales?.[0]) {
+      const norm = normalizeLocale(locales[0]);
+      if (norm) return norm;
+    }
+  } catch {}
   try {
-    // Steam passes its language name ("brazilian", "portuguese", "english"...) to the UI page.
+    const locales = (window as any).LocalizationManager?.m_rgLocalesToUse;
+    if (locales?.[0]) {
+      const norm = normalizeLocale(locales[0]);
+      if (norm) return norm;
+    }
+  } catch {}
+  try {
+    const lang = (window as any).SteamClient?.Settings?.GetCurrentLanguage?.();
+    if (lang) {
+      const norm = normalizeLocale(lang);
+      if (norm) return norm;
+    }
+  } catch {}
+  try {
     const lang = new URLSearchParams(window.location.search).get("LANGUAGE");
-    if (lang) return lang === "brazilian" || lang === "portuguese" ? "pt" : lang;
-  } catch {
-    // fall through
-  }
+    if (lang) {
+      const norm = normalizeLocale(lang);
+      if (norm) return norm;
+    }
+  } catch {}
   return (navigator.language || "en").toLowerCase();
 }
 

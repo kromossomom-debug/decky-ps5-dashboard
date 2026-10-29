@@ -31,7 +31,7 @@ import { buildCss } from "./theme";
 import { Ps5Shell } from "./Shell";
 
 /** Shown in the panel so you can tell which build Steam has loaded. Kept in sync with package.json by scripts/package.sh. */
-const VERSION = "1.8.0";
+const VERSION = "1.9.0";
 
 const getSettings = callable<[], Partial<Settings>>("get_settings");
 const setSettings = callable<[settings: Settings], boolean>("set_settings");
@@ -251,6 +251,14 @@ function Content() {
             description={t.cleanHomeDesc}
             checked={st.hideShelves}
             onChange={(hideShelves) => change({ hideShelves })}
+          />
+        </PanelSectionRow>
+        <PanelSectionRow>
+          <ToggleField
+            label={t.hideBottomBarLabel}
+            description={t.hideBottomBarDesc}
+            checked={st.hideBottomBar}
+            onChange={(hideBottomBar) => change({ hideBottomBar })}
           />
         </PanelSectionRow>
         <PanelSectionRow>

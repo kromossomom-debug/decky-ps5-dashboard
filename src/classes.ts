@@ -26,6 +26,9 @@ const MODULE_KEYS = {
   // Gamepad context menus: the Power menu, a game's "…" menu and so on.
   contextMenu: ["contextMenuItem", "Destructive", "Positive", "Emphasis", "Focused"],
   contextMenuPanel: ["BasicContextMenuModal", "BasicContextMenuContainer", "BasicContextMenuHeader"],
+  // Bottom bar: the controller button hints footer (A, B, X, Y glyphs).
+  footer: ["BasicFooter", "FooterLegend"],
+  actionLegend: ["ActionButtonLegend", "ActionButtonGlyph", "ActionButtonLabel", "FooterGlyphSize"],
 } as const;
 
 export type ModuleName = keyof typeof MODULE_KEYS;

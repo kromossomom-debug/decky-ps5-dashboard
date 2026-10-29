@@ -16,7 +16,7 @@ export const PS5_CSS = `
 }
 .psd-root * { box-sizing: border-box; }
 .psd-content { position: absolute; inset: 0; }
-.psd-page { position: absolute; top: calc(46px + 8vh); left: 0; right: 0; bottom: 0; }
+.psd-page { position: absolute; top: calc(46px + 10vh); left: 0; right: 0; bottom: 0; }
 
 /* ---------- top: Games / Media on the left (L1 / R1), icons on the right ---------- */
 .psd-tabbar {
@@ -34,12 +34,12 @@ export const PS5_CSS = `
   font-size: 1.4vh; font-weight: 700; opacity: 0.85;
 }
 .psd-topicons {
-  position: absolute; top: 46px; right: 4vw; z-index: 4;
+  position: absolute; top: 38px; right: 4vw; z-index: 4;
   display: flex; align-items: center; gap: 1.6vh;
 }
 .psd-icon-button {
-  position: relative; width: 5.4vh; height: 5.4vh; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; font-size: 2.9vh;
+  position: relative; width: 4.8vh; height: 4.8vh; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 2.5vh;
   color: #fff; background: rgba(255,255,255,0.08);
   transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
 }
@@ -47,9 +47,10 @@ export const PS5_CSS = `
 .psd-icon-button.psd-focused { background: #fff; color: #000; box-shadow: var(--glow); }
 .psd-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .psd-icon-label {
-  position: absolute; top: calc(100% + 1.2vh); right: 0; white-space: nowrap;
-  font-size: 1.7vh; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+  position: absolute; top: calc(100% + 0.6vh); right: 0; white-space: nowrap;
+  font-size: 1.5vh; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   opacity: 0; transition: opacity 150ms ease; pointer-events: none;
+  background: rgba(0,0,0,0.6); padding: 0.2vh 0.8vh; border-radius: 0.4vh;
 }
 .psd-icon-button.psd-focused .psd-icon-label { opacity: 1; }
 
@@ -87,7 +88,7 @@ export const PS5_CSS = `
 /* Going down to the lower rows fades the game row and info out, so nothing slides under the tabs. */
 .psd-home-row, .psd-hero { transition: opacity 250ms ease; }
 .psd-lowered .psd-home-row, .psd-lowered .psd-hero { opacity: 0; }
-.psd-top-space { height: calc(46px + 5vh); }
+.psd-top-space { height: calc(46px + 8vh); }
 .psd-section { margin-top: 1.5vh; }
 .psd-section-title { margin: 0 0 0 4vw; font-size: 2.4vh; font-weight: 500; }
 .psd-row {
@@ -116,7 +117,7 @@ export const PS5_CSS = `
 }
 /* Bottom padding keeps the cards clear of Steam's button-hint footer. */
 .psd-hero {
-  position: relative; height: 60vh; padding: 0 4vw 7vh;
+  position: relative; height: 57vh; padding: 0 4vw 7vh;
   display: flex; flex-direction: column; justify-content: flex-end;
 }
 .psd-info { animation: psd-rise 400ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }

@@ -34,6 +34,8 @@ export function buildCss(st: Settings, s: Selectors): string {
     appAction,
     contextMenu,
     contextMenuPanel,
+    footer,
+    actionLegend,
   } = s;
   const accent = accentColor(st.accent);
   const focus = st.focus === "white" ? "#FFFFFF" : accent;
@@ -387,6 +389,47 @@ ${contextMenu.ContextMenuSeparator}, .contextMenuItemHR {
     parts.push(`
 ${s.whatsNew.LibraryHomeWhatsNew}, ${s.friends.LibraryHomeFriends}, ${s.playNext.PlayNextCarousel} {
   display: none !important;
+}`);
+  }
+
+  // ---------- Hide bottom bar (controller button hints: A, B, X, Y / Legion Go / Xbox / SteamOS glyphs) ----------
+  if (st.hideBottomBar) {
+    parts.push(`
+#Footer,
+${footer.BasicFooter},
+${footer.FooterLegend},
+${actionLegend.ActionButtonLegend},
+${actionLegend.ActionButtonGlyph},
+${actionLegend.ActionButtonLabel},
+${actionLegend.FooterGlyphSize},
+[id="Footer"],
+[class*="BasicFooter"],
+[class*="FooterLegend"],
+[class*="ActionButtonLegend"],
+[class*="ActionButtonGlyph"],
+[class*="ActionButtonLabel"],
+[class*="FooterGlyphSize"],
+[class*="FooterBoxShadow"],
+[class*="ControllerBarRoot"],
+[class*="controllerbar"],
+[class*="FooterBar"],
+.footer_BasicFooter_3T1iF,
+.footer_FooterLegend_2JJDH,
+.actionbuttonlegenditem_ActionButtonLegend_Mbyhb,
+.actionbuttonlegenditem_ActionButtonGlyph_3Jfd8,
+.actionbuttonlegenditem_ActionButtonLabel_31Jnn,
+.actionbuttonlegenditem_FooterGlyphSize_223Oc {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(200px) !important;
 }`);
   }
 

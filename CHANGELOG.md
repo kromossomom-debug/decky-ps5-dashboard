@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.9.0
+
+- **New setting: Hide bottom bar (Ocultar barra inferior).** Under the Layout section, users can now toggle off the
+  controller button hints footer bar (A, B, X, Y buttons, Legion Go / Xbox / Steam glyphs) at the bottom of the screen.
+- **Fixed SteamOS native language detection.** Robust locale detection mapping 30+ internal Steam language codes
+  (such as "brazilian", "portuguese", "latam", etc.) to proper ISO prefixes, ensuring SteamOS in Portuguese or English
+  always shows the matching UI text seamlessly.
+- **Improved header and game row spacing.** Adjusted spacing between the top-right option buttons (search, settings,
+  power, profile avatar) and the main home game tiles to prevent overlap when tiles or avatar focus labels are selected.
+
 ## 1.8.0
 
 - **New setting: Open Steam's library.** When it's on, the Game Library tile at the end of the home row, its shortcut
