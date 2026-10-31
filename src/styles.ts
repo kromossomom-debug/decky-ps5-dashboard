@@ -4,14 +4,18 @@
  * --psd-* variables, with PS5 defaults if the theme stylesheet isn't there.
  */
 export const PS5_CSS = `
+/*
+ * Local variables carry the psd- prefix on purpose: Steam registers some short names with @property
+ * (--r is an <angle>), so a "--r: 12px" was thrown away and every corner here came out square.
+ */
 .psd-root {
-  --a: var(--psd-accent, #0070D1);
-  --f: var(--psd-focus, #FFFFFF);
-  --r: var(--psd-radius, 12px);
-  --glow: 0 0 0 0.4vh var(--f), 0 0 3.2vh color-mix(in srgb, var(--f) 45%, transparent);
+  --psd-ca: var(--psd-accent, #0070D1);
+  --psd-cf: var(--psd-focus, #FFFFFF);
+  --psd-cr: var(--psd-radius, 12px);
+  --psd-cglow: 0 0 0 0.4vh var(--psd-cf), 0 0 3.2vh color-mix(in srgb, var(--psd-cf) 45%, transparent);
   position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
   overflow: hidden; color: #fff;
-  background: radial-gradient(ellipse at 85% -10%, color-mix(in srgb, var(--a) 55%, #04060c) 0%, #070b16 45%, #04060c 80%);
+  background: radial-gradient(ellipse at 85% -10%, color-mix(in srgb, var(--psd-ca) 55%, #04060c) 0%, #070b16 45%, #04060c 80%);
   font-family: "SST", "SST Pro", "SST W55 Regular", "Noto Sans", sans-serif;
 }
 .psd-root * { box-sizing: border-box; }
@@ -44,7 +48,7 @@ export const PS5_CSS = `
   transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
 }
 .psd-icon-button svg { display: block; }
-.psd-icon-button.psd-focused { background: #fff; color: #000; box-shadow: var(--glow); }
+.psd-icon-button.psd-focused { background: #fff; color: #000; box-shadow: var(--psd-cglow); }
 .psd-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .psd-icon-label {
   position: absolute; top: calc(100% + 0.6vh); right: 0; white-space: nowrap;
@@ -139,7 +143,7 @@ export const PS5_CSS = `
 .psd-infocard {
   position: relative; flex: 0 0 auto; height: 14vh; padding: 1.3vh 1.8vh;
   display: flex; flex-direction: column; gap: 0.7vh;
-  border-radius: var(--r); background: rgba(10,14,26,0.74);
+  border-radius: var(--psd-cr); background: rgba(10,14,26,0.74);
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
   animation: psd-rise 380ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
   transition: background-color 150ms ease, transform 150ms ease;
@@ -149,7 +153,7 @@ export const PS5_CSS = `
 .psd-infocard:nth-child(4) { animation-delay: 150ms; }
 .psd-infocard::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  box-shadow: var(--glow); opacity: 0; transition: opacity 150ms ease;
+  box-shadow: var(--psd-cglow); opacity: 0; transition: opacity 150ms ease;
 }
 .psd-infocard.psd-focused { background: rgba(28,36,58,0.92); transform: scale(1.03); }
 .psd-infocard.psd-focused::after { opacity: 1; }
@@ -160,7 +164,7 @@ export const PS5_CSS = `
   display: flex; align-items: center; gap: 0.8vh;
   font-size: 1.6vh; font-weight: 600; letter-spacing: 0.02em; color: rgba(255,255,255,0.7);
 }
-.psd-infocard-icon { display: flex; font-size: 2.1vh; color: color-mix(in srgb, var(--a) 55%, #fff); }
+.psd-infocard-icon { display: flex; font-size: 2.1vh; color: color-mix(in srgb, var(--psd-ca) 55%, #fff); }
 .psd-infocard-body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 0.5vh; }
 .psd-infocard-big { font-size: 2.9vh; font-weight: 600; line-height: 1.1; white-space: nowrap; }
 .psd-infocard-unit { margin-left: 0.7vh; font-size: 1.6vh; font-weight: 400; color: rgba(255,255,255,0.7); }
@@ -176,7 +180,7 @@ export const PS5_CSS = `
 .psd-bar { height: 0.6vh; border-radius: 999px; background: rgba(255,255,255,0.14); overflow: hidden; }
 .psd-bar-fill {
   height: 100%; border-radius: inherit; transform-origin: 0 50%;
-  background: linear-gradient(90deg, var(--a), color-mix(in srgb, var(--a) 45%, #fff));
+  background: linear-gradient(90deg, var(--psd-ca), color-mix(in srgb, var(--psd-ca) 45%, #fff));
 }
 .psd-ach-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 1vh; }
 .psd-ach-icons { display: flex; gap: 0.5vh; }
@@ -195,24 +199,24 @@ export const PS5_CSS = `
 /* The glow is its own layer that fades in, cheaper than animating a box-shadow. */
 .psd-button::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  box-shadow: var(--glow); opacity: 0; transition: opacity 150ms ease;
+  box-shadow: var(--psd-cglow); opacity: 0; transition: opacity 150ms ease;
 }
 .psd-button svg { display: block; font-size: 3.2vh; }
-.psd-button-main { min-width: 28vh; padding: 0 3.6vh; border-radius: calc(var(--r) * 0.8); }
+.psd-button-main { min-width: 28vh; padding: 0 3.6vh; border-radius: calc(var(--psd-cr) * 0.8); }
 .psd-button-round { width: 6.4vh; border-radius: 50%; }
 .psd-button.psd-focused { background: #fff; color: #000; transform: scale(1.04); }
 .psd-button.psd-focused::after { opacity: 1; }
 .psd-bottom-space { height: 40vh; }
 
 /* ---------- tiles ---------- */
-.psd-tile { position: relative; flex: 0 0 auto; border-radius: var(--r); transition: transform 150ms ease; }
+.psd-tile { position: relative; flex: 0 0 auto; border-radius: var(--psd-cr); transition: transform 150ms ease; }
 .psd-tile-normal { width: 22vh; height: 22vh; }
 .psd-tile-small { width: 17vh; height: 17vh; }
-.psd-tile-box { position: absolute; inset: 0; border-radius: var(--r); }
+.psd-tile-box { position: absolute; inset: 0; border-radius: var(--psd-cr); }
 .psd-tile-art { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; background: #151a26; }
 .psd-tile-ring {
   position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  box-shadow: var(--glow); opacity: 0; transition: opacity 160ms ease;
+  box-shadow: var(--psd-cglow); opacity: 0; transition: opacity 160ms ease;
 }
 .psd-tile.psd-focused { z-index: 1; }
 .psd-tile.psd-focused .psd-tile-ring { opacity: 1; }
@@ -226,7 +230,7 @@ export const PS5_CSS = `
 .psd-tile-name {
   position: absolute; left: 0; right: 0; bottom: 0; padding: 2.6vh 1vh 0.9vh;
   font-size: 1.8vh; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  border-radius: 0 0 var(--r) var(--r); background: linear-gradient(transparent, rgba(0,0,0,0.88));
+  border-radius: 0 0 var(--psd-cr) var(--psd-cr); background: linear-gradient(transparent, rgba(0,0,0,0.88));
   opacity: 0; transition: opacity 150ms ease;
 }
 .psd-tile.psd-focused .psd-tile-name { opacity: 1; }
@@ -243,7 +247,7 @@ export const PS5_CSS = `
 }
 .psd-tile-home .psd-tile-box {
   right: auto; bottom: auto; width: var(--psd-big); height: var(--psd-big);
-  border-radius: calc(var(--r) * 1.3);
+  border-radius: calc(var(--psd-cr) * 1.3);
   transform: scale(0.6667); transform-origin: 0 0;
   transition: transform 340ms cubic-bezier(0.22, 0.8, 0.24, 1);
 }
@@ -256,7 +260,7 @@ export const PS5_CSS = `
 .psd-tile-home:has(~ .psd-selected):not(:has(+ .psd-selected)) { opacity: 0; }
 /* Soft glow and a drop shadow; the edge itself is the aura below. */
 .psd-tile-home .psd-tile-ring {
-  box-shadow: 0 0 2.6vh color-mix(in srgb, var(--f) 30%, transparent), 0 1.6vh 3.2vh rgba(0,0,0,0.55);
+  box-shadow: 0 0 2.6vh color-mix(in srgb, var(--psd-cf) 30%, transparent), 0 1.6vh 3.2vh rgba(0,0,0,0.55);
 }
 /*
  * The PS5 glass aura: a light band that keeps circling the focused tile's edge. A conic gradient
@@ -264,14 +268,16 @@ export const PS5_CSS = `
  * own, with nothing repainted per frame. It exists only on the focused tile.
  */
 .psd-tile-aura {
-  position: absolute; inset: -0.45vh; border-radius: calc(var(--r) * 1.3 + 0.45vh);
+  position: absolute; inset: -0.45vh; border-radius: calc(var(--psd-cr) * 1.3 + 0.45vh);
   overflow: hidden; opacity: 0; transition: opacity 200ms ease;
 }
 .psd-tile-aura-spin {
   position: absolute; left: -50%; top: -50%; width: 200%; height: 200%;
+  /* White light that shades through grey, the accent blue and translucent black, like the PS5's focus edge. */
   background: conic-gradient(
-    var(--f), rgba(255,255,255,0.18) 18%, rgba(0,0,0,0.35) 32%, color-mix(in srgb, var(--f) 75%, transparent) 50%,
-    rgba(255,255,255,0.22) 68%, rgba(0,0,0,0.3) 84%, var(--f)
+    var(--psd-cf), rgba(200,210,225,0.45) 12%, color-mix(in srgb, var(--psd-ca) 70%, transparent) 24%, rgba(0,0,0,0.35) 36%,
+    color-mix(in srgb, var(--psd-cf) 75%, transparent) 50%, rgba(160,170,185,0.4) 62%,
+    color-mix(in srgb, var(--psd-ca) 60%, transparent) 74%, rgba(0,0,0,0.3) 86%, var(--psd-cf)
   );
 }
 .psd-tile-home.psd-focused .psd-tile-aura { opacity: 1; }
@@ -293,7 +299,7 @@ export const PS5_CSS = `
 .psd-not-installed .psd-cover { opacity: 0.55; }
 .psd-badge {
   position: absolute; top: 0.8vh; left: 0.8vh; padding: 0.3vh 0.8vh; border-radius: 0.6vh;
-  background: var(--a); font-size: 1.4vh; font-weight: 600;
+  background: var(--psd-ca); font-size: 1.4vh; font-weight: 600;
 }
 .psd-action {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
@@ -301,7 +307,7 @@ export const PS5_CSS = `
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
   transition: background-color 150ms ease, color 150ms ease;
 }
-.psd-tile-accent .psd-action { background: linear-gradient(135deg, color-mix(in srgb, var(--a) 70%, #fff), var(--a) 60%); }
+.psd-tile-accent .psd-action { background: linear-gradient(135deg, color-mix(in srgb, var(--psd-ca) 70%, #fff), var(--psd-ca) 60%); }
 .psd-tile-action.psd-focused .psd-action { background: #fff; color: #000; }
 .psd-action-icon { font-size: 5vh; line-height: 1; }
 .psd-tile-home .psd-action-icon { font-size: 6.4vh; }
@@ -310,9 +316,9 @@ export const PS5_CSS = `
 .psd-tile-small.psd-tile-action .psd-action-icon {
   display: flex; align-items: center; justify-content: center;
   width: 7vh; height: 7vh; border-radius: 50%; font-size: 3.6vh;
-  background: color-mix(in srgb, var(--a) 35%, transparent);
+  background: color-mix(in srgb, var(--psd-ca) 35%, transparent);
 }
-.psd-tile-small.psd-tile-action.psd-focused .psd-action-icon { background: color-mix(in srgb, var(--a) 18%, #fff); }
+.psd-tile-small.psd-tile-action.psd-focused .psd-action-icon { background: color-mix(in srgb, var(--psd-ca) 18%, #fff); }
 .psd-tile-small.psd-tile-action.psd-focused .psd-tile-name { color: #000; text-shadow: none; }
 
 /* ---------- Game Library ---------- */
@@ -328,7 +334,7 @@ export const PS5_CSS = `
   transition: background-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
 }
 .psd-chip.psd-active { color: #fff; font-weight: 600; background: rgba(255,255,255,0.2); }
-.psd-chip.psd-focused { background: #fff; color: #000; box-shadow: var(--glow); }
+.psd-chip.psd-focused { background: #fff; color: #000; box-shadow: var(--psd-cglow); }
 .psd-chip-icon { display: flex; font-size: 2.5vh; }
 .psd-chip-sep { flex: 0 0 auto; width: 1px; height: 3.4vh; background: rgba(255,255,255,0.18); }
 .psd-lib-head { flex: 0 0 auto; padding: 0.6vh 0 0.6vh 0.6vh; font-size: 2.2vh; font-weight: 500; }
@@ -346,12 +352,12 @@ export const PS5_CSS = `
   padding: 1.6vh 4vw 30vh; overflow: hidden;
 }
 .psd-card {
-  height: 18vh; padding: 2vh; border-radius: var(--r);
+  height: 18vh; padding: 2vh; border-radius: var(--psd-cr);
   display: flex; flex-direction: column; justify-content: space-between;
   background: rgba(255,255,255,0.08); transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
 }
-.psd-card-accent { background: linear-gradient(135deg, color-mix(in srgb, var(--a) 80%, #fff), var(--a)); }
-.psd-card.psd-focused { transform: scale(1.03); box-shadow: var(--glow); }
+.psd-card-accent { background: linear-gradient(135deg, color-mix(in srgb, var(--psd-ca) 80%, #fff), var(--psd-ca)); }
+.psd-card.psd-focused { transform: scale(1.03); box-shadow: var(--psd-cglow); }
 .psd-card:not(.psd-card-accent).psd-focused { background: rgba(255,255,255,0.16); }
 .psd-card-icon { font-size: 4.6vh; line-height: 1; }
 .psd-card-icon svg { display: block; }

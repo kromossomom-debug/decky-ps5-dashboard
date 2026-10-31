@@ -47,7 +47,10 @@ A [Decky Loader](https://decky.xyz) plugin for the Steam Deck and other handheld
   entrances.
 - **Accent colors.** PlayStation blue by default, or the console and DualSense colors: Starlight Blue, Cobalt Blue,
   Cosmic Red, Nova Pink, Galactic Purple, Volcanic Red and more.
-- **English and Portuguese.** The plugin follows Steam's language.
+- **Speaks your language.** The plugin follows the language you picked in Steam: English, Portuguese, Spanish,
+  French, German, Italian, Polish, Russian, Ukrainian, Turkish, Japanese, Korean and Simplified and Traditional
+  Chinese. Any other Steam language gets English. Translations live in `src/locales/`, one file per language, and
+  improvements are welcome.
 
 ## Screenshots
 
@@ -172,6 +175,7 @@ src/
   palette.ts     in-place repaint of Steam's colors
   classes.ts     runtime lookup of Steam's class modules
   styles.ts      stylesheet for the plugin's screens
+  i18n.ts        picks Steam's language; locales/ holds one file per language
 py_modules/
   hltb_client.py HowLongToBeat lookups with a disk cache
 main.py          Decky backend: settings and HowLongToBeat

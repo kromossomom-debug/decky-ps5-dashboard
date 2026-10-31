@@ -1,347 +1,82 @@
 /**
- * The plugin's text in English and Portuguese, picked from Steam's own UI language.
- * Steam reloads its whole UI (and this plugin) when the language changes, so it's read once.
+ * The plugin's text in Steam's own UI language. Each language lives in src/locales and has the exact
+ * shape of the English file, so TypeScript flags any missing string. Languages without a translation
+ * fall back to English. Steam reloads its whole UI (and this plugin) when the language changes, so
+ * it's read once.
  */
 
-const pt = {
-  // Quick Access panel
-  enableLabel: "Ativar visual PS5",
-  enableDesc: "Aplica o layout da tela inicial do PlayStation 5 no Modo Jogo.",
-  screensSection: "Telas PS5",
-  homeLabel: "Tela inicial PS5",
-  homeDesc: "Troca a tela inicial da Steam por uma igual à do PS5: fileira de jogos no topo, arte do jogo e botão Jogar.",
-  openLibrary: "Abrir Biblioteca de jogos",
-  openSteamLibraryLabel: "Abrir a biblioteca da Steam",
-  openSteamLibraryDesc: "O bloco da biblioteca na tela inicial e os atalhos abrem a biblioteca da Steam (com as abas do TabMaster) em vez da Biblioteca de jogos do PS5.",
-  steamLibraryTileDesc: "Sua biblioteca da Steam, com as suas abas",
-  infoCardsLabel: "Cards de informação",
-  infoCardsDesc: "Mostra cards embaixo do botão Jogar: tempo para zerar, conquistas, seu tempo e avaliações.",
-  hltbLabel: "HowLongToBeat",
-  hltbDesc: "Busca quanto tempo leva para zerar cada jogo. Uma consulta por jogo, guardada por uma semana.",
-  lookSection: "Aparência",
-  paletteLabel: "Cores do PS5 em tudo",
-  paletteDesc: "Troca o azul e o verde da Steam pela cor de destaque e escurece os cinzas para o tom do PS5, em menus, botões e páginas.",
-  accentLabel: "Cor de destaque",
-  backgroundLabel: "Fundo da tela inicial",
-  bgArt: "Arte do jogo (PS5)",
-  bgGradient: "Gradiente na cor de destaque",
-  bgDark: "Escuro",
-  focusLabel: "Foco",
-  focusWhite: "Brilho branco (PS5)",
-  focusAccent: "Brilho na cor de destaque",
-  heroSpaceLabel: "Espaço para a arte",
-  heroSpaceDesc: "Só para a tela inicial da Steam (com a Tela inicial PS5 desligada).",
-  radiusLabel: "Arredondamento dos blocos",
-  layoutSection: "Layout",
-  controlCenterLabel: "Menus estilo Central de controle",
-  controlCenterDesc: "Menu Steam e Acesso Rápido com painel escuro, cantos arredondados e item focado em branco.",
-  steamLibraryLabel: "Estilizar a biblioteca da Steam",
-  steamLibraryDesc: "Capas arredondadas, foco e abas no estilo PS5 na biblioteca da Steam. Desligue para usar o visual original ou plugins como o TabMaster.",
-  cleanHomeLabel: "Tela inicial limpa",
-  cleanHomeDesc: "Esconde Novidades, Amigos e Recomendados abaixo dos jogos recentes.",
-  hideBottomBarLabel: "Ocultar barra inferior",
-  hideBottomBarDesc: "Esconde a barra de botões do controle (A, B, X, Y) que aparece na parte de baixo da tela.",
-  fontLabel: "Fonte estilo PlayStation (SST)",
-  resetDefaults: "Restaurar padrões",
-  supportSection: "Apoie o projeto",
-  supportText: "Curtiu o plugin? Pague um café para o autor e ajude a manter as atualizações.",
+import de from "./locales/de";
+import en, { Strings } from "./locales/en";
+import es from "./locales/es";
+import fr from "./locales/fr";
+import it from "./locales/it";
+import ja from "./locales/ja";
+import ko from "./locales/ko";
+import pl from "./locales/pl";
+import pt from "./locales/pt";
+import ru from "./locales/ru";
+import tr from "./locales/tr";
+import uk from "./locales/uk";
+import zhCN from "./locales/zh-CN";
+import zhTW from "./locales/zh-TW";
 
-  // Accent colors
-  accentPs: "Azul PlayStation",
-  accentLight: "Azul claro",
-  accentStarlight: "Starlight Blue",
-  accentCobalt: "Cobalt Blue",
-  accentCosmic: "Cosmic Red",
-  accentNova: "Nova Pink",
-  accentPurple: "Galactic Purple",
-  accentVolcanic: "Volcanic Red",
-  accentWhite: "Branco",
+export type { Strings };
 
-  // Tabs and buttons
-  tabGames: "Jogos",
-  tabMedia: "Mídia",
-  library: "Biblioteca de jogos",
-  libraryDesc: "Todos os seus jogos e apps",
-  prevTab: "Aba anterior",
-  nextTab: "Próxima aba",
-  play: "Jogar",
-  resume: "Voltar ao jogo",
-  viewGame: "Ver jogo",
-  open: "Abrir",
-  details: "Detalhes",
-  moreOptions: "Mais opções",
-  gameMenu: "Opções do jogo",
-  select: "Selecionar",
-  running: "Em execução",
+const LOCALES: Record<string, Strings> = { en, pt, de, fr, es, it, pl, ru, uk, tr, ja, ko, "zh-CN": zhCN, "zh-TW": zhTW };
 
-  // Home rows and shortcuts
-  rowFavorites: "Favoritos",
-  rowInstalled: "Instalados",
-  rowShortcuts: "Atalhos",
-  steamLibrary: "Biblioteca Steam",
-  downloads: "Downloads",
-  media: "Galeria de mídia",
-  search: "Pesquisar",
-  settings: "Configurações",
-  profile: "Perfil",
-  powerTitle: "Energia",
-
-  // Game library
-  viewPlayable: "Jogáveis",
-  viewCollection: "Sua coleção",
-  viewApps: "Apps",
-  viewFavorites: "Favoritos",
-  viewNonSteam: "Fora da Steam",
-  sortRecent: "Ordenar: Recentes",
-  sortName: "Ordenar: A–Z",
-  empty: "Nada por aqui ainda.",
-
-  // Media tab cards
-  storeTitle: "Steam Store",
-  storeDesc: "Destaques, lançamentos e recomendações",
-  specialsTitle: "Ofertas",
-  specialsDesc: "Jogos em promoção agora",
-  wishlistTitle: "Lista de desejos",
-  wishlistDesc: "O que você está de olho",
-  searchDesc: "Jogos, apps e amigos",
-  appsDesc: "Apps e programas da sua biblioteca",
-  mediaDesc: "Capturas de tela e gravações",
-  gameBaseTitle: "Game Base",
-  gameBaseDesc: "Amigos, conversas e quem está on-line",
-  invitesTitle: "Convites",
-  invitesDesc: "Convites de amizade e de grupos",
-  communityTitle: "Comunidade Steam",
-  communityDesc: "Atividade, guias e discussões",
-  profileDesc: "Seu perfil na Steam",
-  downloadsDesc: "Fila e atualizações",
-
-  // Info cards
-  cardHltb: "Tempo para zerar",
-  cardHltbMain: "História",
-  cardHltbPlus: "+ Extras",
-  cardHltbFull: "100%",
-  cardHltbLoading: "Buscando no HowLongToBeat…",
-  cardHltbNone: "Sem dados no HowLongToBeat",
-  cardHltbYou: (time: string, pct: number) => `Você: ${time} · ${pct}% da história`,
-  cardAchievements: "Conquistas",
-  cardAchievementsOf: (done: number, total: number) => `${done} de ${total}`,
-  cardAchievementsAll: "Todas desbloqueadas!",
-  cardPlaytime: "Seu tempo",
-  cardPlaytimeNever: "Ainda não jogado",
-  cardTwoWeeks: (time: string) => `+${time} em 2 semanas`,
-  cardReviews: "Avaliações",
-  cardReviewsPositive: "positivas",
-  cardMetacritic: (n: number) => `Metacritic ${n}`,
-  cardSize: (size: string) => `${size} instalado`,
-  cardGames: "Jogos",
-  cardInstalled: "Instalados",
-  cardApps: "Apps",
-
-  // Game info
-  installed: "Instalado",
-  notInstalled: "Não instalado",
-  playedToday: "Jogado hoje",
-  playedYesterday: "Jogado ontem",
-  playedDaysAgo: (n: number) => `Jogado há ${n} dias`,
-  playedMonthsAgo: (n: number) => (n === 1 ? "Jogado há 1 mês" : `Jogado há ${n} meses`),
-  playedOverAYear: "Jogado há mais de um ano",
-  minutesPlayed: (n: number) => `${n} min jogados`,
-  hoursPlayed: (n: number) => `${n} h jogadas`,
+/** Steam's API names for its languages (the LANGUAGE value it gives the UI) mapped to our locales. */
+const STEAM_LANGUAGES: Record<string, string> = {
+  english: "en",
+  brazilian: "pt",
+  portuguese: "pt",
+  german: "de",
+  french: "fr",
+  spanish: "es",
+  latam: "es",
+  italian: "it",
+  polish: "pl",
+  russian: "ru",
+  ukrainian: "uk",
+  turkish: "tr",
+  japanese: "ja",
+  koreana: "ko",
+  schinese: "zh-CN",
+  tchinese: "zh-TW",
 };
 
-export type Strings = typeof pt;
-
-const en: Strings = {
-  enableLabel: "Enable PS5 look",
-  enableDesc: "Applies the PlayStation 5 home screen layout to Game Mode.",
-  screensSection: "PS5 screens",
-  homeLabel: "PS5 home screen",
-  homeDesc: "Replaces Steam's home with one just like the PS5: game row on top, game art and a Play button.",
-  openLibrary: "Open Game Library",
-  openSteamLibraryLabel: "Open Steam's library",
-  openSteamLibraryDesc: "The library tile on the home screen and the shortcuts open Steam's library (with your TabMaster tabs) instead of the PS5 Game Library.",
-  steamLibraryTileDesc: "Your Steam library, with your tabs",
-  infoCardsLabel: "Info cards",
-  infoCardsDesc: "Shows cards under the Play button: time to beat, achievements, your playtime and reviews.",
-  hltbLabel: "HowLongToBeat",
-  hltbDesc: "Looks up how long each game takes to beat. One request per game, kept for a week.",
-  lookSection: "Appearance",
-  paletteLabel: "PS5 colors everywhere",
-  paletteDesc: "Swaps Steam's blue and green for the accent color and deepens its greys to the PS5 tone, in menus, buttons and pages.",
-  accentLabel: "Accent color",
-  backgroundLabel: "Home background",
-  bgArt: "Game art (PS5)",
-  bgGradient: "Accent color gradient",
-  bgDark: "Dark",
-  focusLabel: "Focus",
-  focusWhite: "White glow (PS5)",
-  focusAccent: "Accent color glow",
-  heroSpaceLabel: "Space for the art",
-  heroSpaceDesc: "Only for Steam's home screen (with PS5 home screen turned off).",
-  radiusLabel: "Tile corner radius",
-  layoutSection: "Layout",
-  controlCenterLabel: "Control Center-style menus",
-  controlCenterDesc: "Steam menu and Quick Access with a dark panel, rounded corners and a white focused item.",
-  steamLibraryLabel: "Style Steam's library",
-  steamLibraryDesc: "PS5-style rounded capsules, focus and tabs in Steam's library. Turn off to keep Steam's own look or use plugins like TabMaster.",
-  cleanHomeLabel: "Clean home screen",
-  cleanHomeDesc: "Hides What's New, Friends and Recommended below the recent games.",
-  hideBottomBarLabel: "Hide bottom bar",
-  hideBottomBarDesc: "Hides the controller button hints bar (A, B, X, Y) at the bottom of the screen.",
-  fontLabel: "PlayStation-style font (SST)",
-  resetDefaults: "Reset to defaults",
-  supportSection: "Support the project",
-  supportText: "Enjoying the plugin? Buy the author a coffee and help keep it updated.",
-
-  accentPs: "PlayStation blue",
-  accentLight: "Light blue",
-  accentStarlight: "Starlight Blue",
-  accentCobalt: "Cobalt Blue",
-  accentCosmic: "Cosmic Red",
-  accentNova: "Nova Pink",
-  accentPurple: "Galactic Purple",
-  accentVolcanic: "Volcanic Red",
-  accentWhite: "White",
-
-  tabGames: "Games",
-  tabMedia: "Media",
-  library: "Game Library",
-  libraryDesc: "All your games and apps",
-  prevTab: "Previous tab",
-  nextTab: "Next tab",
-  play: "Play",
-  resume: "Resume",
-  viewGame: "View game",
-  open: "Open",
-  details: "Details",
-  moreOptions: "More options",
-  gameMenu: "Game options",
-  select: "Select",
-  running: "Running",
-
-  rowFavorites: "Favorites",
-  rowInstalled: "Installed",
-  rowShortcuts: "Shortcuts",
-  steamLibrary: "Steam Library",
-  downloads: "Downloads",
-  media: "Media Gallery",
-  search: "Search",
-  settings: "Settings",
-  profile: "Profile",
-  powerTitle: "Power",
-
-  viewPlayable: "Playable",
-  viewCollection: "Your Collection",
-  viewApps: "Apps",
-  viewFavorites: "Favorites",
-  viewNonSteam: "Non-Steam",
-  sortRecent: "Sort: Recent",
-  sortName: "Sort: A–Z",
-  empty: "Nothing here yet.",
-
-  storeTitle: "Steam Store",
-  storeDesc: "Featured, new releases and recommendations",
-  specialsTitle: "Specials",
-  specialsDesc: "Games on sale right now",
-  wishlistTitle: "Wishlist",
-  wishlistDesc: "What you've got your eye on",
-  searchDesc: "Games, apps and friends",
-  appsDesc: "Apps and tools in your library",
-  mediaDesc: "Screenshots and recordings",
-  gameBaseTitle: "Game Base",
-  gameBaseDesc: "Friends, chats and who's online",
-  invitesTitle: "Invites",
-  invitesDesc: "Friend and group invites",
-  communityTitle: "Steam Community",
-  communityDesc: "Activity, guides and discussions",
-  profileDesc: "Your Steam profile",
-  downloadsDesc: "Queue and updates",
-
-  cardHltb: "Time to beat",
-  cardHltbMain: "Story",
-  cardHltbPlus: "+ Extras",
-  cardHltbFull: "100%",
-  cardHltbLoading: "Looking up HowLongToBeat…",
-  cardHltbNone: "No HowLongToBeat data",
-  cardHltbYou: (time: string, pct: number) => `You: ${time} · ${pct}% of the story`,
-  cardAchievements: "Achievements",
-  cardAchievementsOf: (done: number, total: number) => `${done} of ${total}`,
-  cardAchievementsAll: "All unlocked!",
-  cardPlaytime: "Your time",
-  cardPlaytimeNever: "Not played yet",
-  cardTwoWeeks: (time: string) => `+${time} in 2 weeks`,
-  cardReviews: "Reviews",
-  cardReviewsPositive: "positive",
-  cardMetacritic: (n: number) => `Metacritic ${n}`,
-  cardSize: (size: string) => `${size} installed`,
-  cardGames: "Games",
-  cardInstalled: "Installed",
-  cardApps: "Apps",
-
-  installed: "Installed",
-  notInstalled: "Not installed",
-  playedToday: "Played today",
-  playedYesterday: "Played yesterday",
-  playedDaysAgo: (n: number) => `Played ${n} days ago`,
-  playedMonthsAgo: (n: number) => (n === 1 ? "Played 1 month ago" : `Played ${n} months ago`),
-  playedOverAYear: "Played over a year ago",
-  minutesPlayed: (n: number) => `${n} min played`,
-  hoursPlayed: (n: number) => `${n} h played`,
-};
+/** Maps a language name or tag ("brazilian", "pt-BR", "zh-Hant", "es-419"...) to one of our locales. */
+function toLocale(value: string | null | undefined): string | undefined {
+  if (!value) return undefined;
+  const v = value.trim().toLowerCase().replace("_", "-");
+  if (STEAM_LANGUAGES[v]) return STEAM_LANGUAGES[v];
+  if (v.startsWith("zh")) return /tw|hk|mo|hant/.test(v) ? "zh-TW" : "zh-CN";
+  const base = v.split("-")[0];
+  return LOCALES[base] ? base : undefined;
+}
 
 /**
- * Maps Steam's internal language names (e.g. "brazilian", "schinese") to ISO locale prefixes.
+ * Steam's UI language as one of our locales. The first source that answers decides: a Steam set to a
+ * language we don't translate gets English, never the operating system's language.
  */
-const STEAM_LANG_TO_LOCALE: Record<string, string> = {
-  brazilian: "pt", portuguese: "pt",
-  english: "en",
-  spanish: "es", latam: "es",
-  french: "fr", german: "de", italian: "it", russian: "ru",
-  schinese: "zh", tchinese: "zh", japanese: "ja", koreana: "ko",
-  dutch: "nl", polish: "pl", turkish: "tr", thai: "th",
-  czech: "cs", danish: "da", finnish: "fi", hungarian: "hu",
-  norwegian: "no", romanian: "ro", swedish: "sv", ukrainian: "uk",
-  vietnamese: "vi", greek: "el", bulgarian: "bg", arabic: "ar", indonesian: "id",
-};
-
-function normalizeLocale(raw?: string): string | null {
-  if (!raw) return null;
-  const lower = raw.toLowerCase().trim();
-  return STEAM_LANG_TO_LOCALE[lower] || lower;
+function detectLocale(): string {
+  const sources: (() => string | null | undefined)[] = [
+    // Steam passes its language name ("brazilian", "schinese"...) to its UI page.
+    () => new URLSearchParams(window.location.search).get("LANGUAGE"),
+    () => (window as any).LocalizationManager?.GetPreferredLocales?.()?.[0],
+    // Only when Steam says nothing at all.
+    () => navigator.language,
+  ];
+  for (const get of sources) {
+    let value: string | null | undefined;
+    try {
+      value = get();
+    } catch {
+      continue;
+    }
+    if (value) return toLocale(value) ?? "en";
+  }
+  return "en";
 }
 
-/** Steam's UI language, normalised to an ISO locale prefix (e.g. "pt", "en"). */
-function steamLocale(): string {
-  try {
-    const locales: string[] | undefined = (window as any).LocalizationManager?.GetPreferredLocales?.();
-    if (locales?.[0]) {
-      const norm = normalizeLocale(locales[0]);
-      if (norm) return norm;
-    }
-  } catch {}
-  try {
-    const locales = (window as any).LocalizationManager?.m_rgLocalesToUse;
-    if (locales?.[0]) {
-      const norm = normalizeLocale(locales[0]);
-      if (norm) return norm;
-    }
-  } catch {}
-  try {
-    const lang = (window as any).SteamClient?.Settings?.GetCurrentLanguage?.();
-    if (lang) {
-      const norm = normalizeLocale(lang);
-      if (norm) return norm;
-    }
-  } catch {}
-  try {
-    const lang = new URLSearchParams(window.location.search).get("LANGUAGE");
-    if (lang) {
-      const norm = normalizeLocale(lang);
-      if (norm) return norm;
-    }
-  } catch {}
-  return (navigator.language || "en").toLowerCase();
-}
-
-/** Portuguese for Portuguese-language Steam, English for everything else. */
-export const t: Strings = steamLocale().startsWith("pt") ? pt : en;
+export const locale = detectLocale();
+export const t: Strings = LOCALES[locale] ?? en;

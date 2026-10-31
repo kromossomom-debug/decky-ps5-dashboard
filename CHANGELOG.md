@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.10.0
+
+- **The plugin speaks your Steam language.** 1.9.0 detected Steam's language, but the plugin only had English and
+  Portuguese text. It now ships 14 languages: English, Portuguese, Spanish, French, German, Italian, Polish, Russian,
+  Ukrainian, Turkish, Japanese, Korean, Simplified Chinese and Traditional Chinese. Any other Steam language gets
+  English, never the operating system's language.
+- Plurals follow each language's rules ("2 дня" / "5 дней", "2 miesiące" / "5 miesięcy"...).
+- Translations live in `src/locales/`, one file per language, all checked against the English one so no string
+  can go missing.
+- **Rounded corners actually work now.** Steam registers a CSS property called `--r` as an angle, and the plugin used
+  that same name for its corner radius, so Steam threw the value away and every tile, card and button on the plugin's
+  screens came out square. The plugin's variables now have their own names, and the **Tile corner radius** setting
+  (0–24 px) rounds the game covers on the home row, the lower rows, the Game Library, the info cards and the buttons.
+- **The glass aura follows the corners.** The animated edge around the focused game now curves with the tile, and its
+  light shades through grey and the accent blue as well as white and translucent black.
+
 ## 1.9.0
 
 - **New setting: Hide bottom bar (Ocultar barra inferior).** Under the Layout section, users can now toggle off the
