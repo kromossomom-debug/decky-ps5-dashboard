@@ -47,6 +47,8 @@ export function buildCss(st: Settings, s: Selectors): string {
   --psd-accent-soft: color-mix(in srgb, ${accent} 35%, transparent);
   --psd-focus: ${focus};
   --psd-radius: ${st.radius}px;
+  /* Overall scale of the plugin's own screens (uiScale setting, in percent). */
+  --psd-scale: ${st.uiScale / 100};
   --psd-panel: rgba(16, 19, 28, 0.96);
   --psd-glow: 0 0 0 3px var(--psd-focus), 0 0 24px color-mix(in srgb, var(--psd-focus) 45%, transparent);
 }`);

@@ -32,6 +32,8 @@ export interface Settings {
   steamLibrary: boolean;
   /** The Game Library tile and shortcuts open Steam's own library (with TabMaster's tabs) instead of the PS5 one. */
   openSteamLibrary: boolean;
+  /** Overall scale of the plugin's own screens, in percent. 100 is the default layout. */
+  uiScale: number;
 }
 
 /** PlayStation blues plus the DualSense / console cover colors. */
@@ -64,6 +66,7 @@ export const DEFAULT_SETTINGS: Settings = {
   hltb: true,
   steamLibrary: true,
   openSteamLibrary: false,
+  uiScale: 100,
 };
 
 export function accentColor(id: string): string {

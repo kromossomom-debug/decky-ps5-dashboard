@@ -13,7 +13,11 @@ export const PS5_CSS = `
   --psd-cf: var(--psd-focus, #FFFFFF);
   --psd-cr: var(--psd-radius, 12px);
   --psd-cglow: 0 0 0 0.4vh var(--psd-cf), 0 0 3.2vh color-mix(in srgb, var(--psd-cf) 45%, transparent);
-  position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+  /* uiScale: zoom scales everything inside (vh, vw, px, text) by the factor and keeps the width at
+     100% of the parent; vh is viewport-based and not compensated by zoom, so the height is divided
+     by the same factor to keep the screen exactly full. */
+  zoom: var(--psd-scale, 1);
+  position: absolute; top: 0; left: 0; width: 100%; height: calc(100vh / var(--psd-scale, 1));
   overflow: hidden; color: #fff;
   background: radial-gradient(ellipse at 85% -10%, color-mix(in srgb, var(--psd-ca) 55%, #04060c) 0%, #070b16 45%, #04060c 80%);
   font-family: "SST", "SST Pro", "SST W55 Regular", "Noto Sans", sans-serif;
