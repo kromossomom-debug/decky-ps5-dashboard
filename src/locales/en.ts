@@ -27,6 +27,8 @@ const en = {
   heroSpaceLabel: "Space for the art",
   heroSpaceDesc: "Only for Steam's home screen (with PS5 home screen turned off).",
   radiusLabel: "Tile corner radius",
+  uiScaleLabel: "UI scale",
+  uiScaleDesc: "Scales the PS5 screens up or down — handy on small handheld or large TV displays. 100% is the default.",
   layoutSection: "Layout",
   controlCenterLabel: "Control Center-style menus",
   controlCenterDesc: "Steam menu and Quick Access with a dark panel, rounded corners and a white focused item.",

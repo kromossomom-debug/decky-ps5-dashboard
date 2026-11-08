@@ -29,6 +29,8 @@ const tr: Strings = {
   heroSpaceLabel: "Görsel için alan",
   heroSpaceDesc: "Yalnızca Steam ana sayfası için (PS5 ana ekranı kapalıyken).",
   radiusLabel: "Kutucuk köşe yuvarlaklığı",
+  uiScaleLabel: "Arayüz ölçeği",
+  uiScaleDesc: "PS5 ekranlarını büyütür veya küçültür — küçük el konsolu veya büyük TV ekranlarında işe yarar. Varsayılan değer %100.",
   layoutSection: "Düzen",
   controlCenterLabel: "Kontrol merkezi tarzı menüler",
   controlCenterDesc: "Koyu panel, yuvarlak köşeler ve beyaz seçili öğeyle Steam menüsü ve Hızlı Erişim.",

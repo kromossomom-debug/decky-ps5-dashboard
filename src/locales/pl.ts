@@ -33,6 +33,8 @@ const pl: Strings = {
   heroSpaceLabel: "Miejsce na grafikę",
   heroSpaceDesc: "Tylko dla ekranu głównego Steam (gdy ekran główny PS5 jest wyłączony).",
   radiusLabel: "Zaokrąglenie kafelków",
+  uiScaleLabel: "Skala interfejsu",
+  uiScaleDesc: "Powiększa lub pomniejsza ekrany PS5 — przydatne na małych ekranach handheldów lub dużych telewizorach. 100% to domyślna wartość.",
   layoutSection: "Układ",
   controlCenterLabel: "Menu w stylu centrum sterowania",
   controlCenterDesc: "Menu Steam i szybki dostęp z ciemnym panelem, zaokrąglonymi rogami i białym zaznaczeniem.",

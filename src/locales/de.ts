@@ -29,6 +29,8 @@ const de: Strings = {
   heroSpaceLabel: "Platz für die Grafik",
   heroSpaceDesc: "Nur für Steams Startseite (wenn der PS5-Startbildschirm aus ist).",
   radiusLabel: "Eckenradius der Kacheln",
+  uiScaleLabel: "UI-Skalierung",
+  uiScaleDesc: "Skaliert die PS5-Bildschirme nach oben oder unten — praktisch auf kleinen Handheld- oder großen TV-Bildschirmen. 100 % ist der Standard.",
   layoutSection: "Layout",
   controlCenterLabel: "Menüs im Stil des Kontrollzentrums",
   controlCenterDesc: "Steam-Menü und Schnellzugriff mit dunklem Panel, runden Ecken und weißem ausgewähltem Eintrag.",
