@@ -57,6 +57,10 @@ export const PS5_CSS = `
   background: rgba(0,0,0,0.6); padding: 0.2vh 0.8vh; border-radius: 0.4vh;
 }
 .psd-icon-button.psd-focused .psd-icon-label { opacity: 1; }
+.psd-clock {
+  color: #fff; font-size: 2.4vh; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap;
+  font-variant-numeric: tabular-nums; text-shadow: 0 1px 6px rgba(0,0,0,0.6); align-self: center;
+}
 
 /* ---------- background art ---------- */
 .psd-backdrop { position: absolute; inset: 0; }

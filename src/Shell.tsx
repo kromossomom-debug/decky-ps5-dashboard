@@ -1,3 +1,4 @@
+import { callable } from "@decky/api";
 import { Focusable, GamepadButton, GamepadEvent, Navigation } from "@decky/ui";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { IoLibrary } from "react-icons/io5";
@@ -67,7 +68,61 @@ function CardsTab({ cards }: { cards: CardDef[] }) {
   );
 }
 
-/** Search, settings, power and the profile picture: the PS5's top right corner. */
+/**
+ * The hour cycle to display in: SteamOS' "24-hour clock" toggle wins over the locale default, so we
+ * read the actual setting from the backend instead of guessing from the locale.
+ */
+let hourMode: 12 | 24 | "auto" = "auto";
+const fetchHourMode = callable<[], boolean | null>("get_24hour");
+
+function resolveHourMode() {
+  if (hourMode !== "auto") return;
+  fetchHourMode()
+    .then((value) => {
+      hourMode = value === true ? 24 : value === false ? 12 : "auto";
+    })
+    .catch(() => {
+      hourMode = "auto";
+    });
+}
+
+/**
+ * The current time in the system's own hour format: plain "14:32" in 24-hour mode, "2:32 PM" in
+ * 12-hour mode (with AM/PM), and the locale's default when the toggle can't be read.
+ */
+function formatTime(now: Date): string {
+  try {
+    const options: Intl.DateTimeFormatOptions =
+      hourMode === 24
+        ? { hour: "2-digit", minute: "2-digit", hourCycle: "h23" }
+        : hourMode === 12
+          ? { hour: "numeric", minute: "2-digit", hour12: true }
+          : { hour: "numeric", minute: "2-digit" };
+    return new Intl.DateTimeFormat(undefined, options).format(now);
+  } catch {
+    return now.toTimeString().slice(0, 5);
+  }
+}
+
+/** Live clock: ticks every second but only re-renders when the displayed minute actually changes. */
+function useClock(): string {
+  const [time, setTime] = useState(() => formatTime(new Date()));
+  useEffect(() => {
+    resolveHourMode();
+    const id = window.setInterval(() => {
+      const next = formatTime(new Date());
+      setTime((prev) => (prev === next ? prev : next));
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, []);
+  return time;
+}
+
+function Clock() {
+  return <span className="psd-clock">{useClock()}</span>;
+}
+
+/** The time plus search, settings, power and the profile picture: the PS5's top right corner. */
 function TopIcons() {
   const me = useMemo(persona, []);
   return (
@@ -80,6 +135,7 @@ function TopIcons() {
         label={me.name || t.profile}
         onActivate={steamWeb(PROFILE_URL)}
       />
+      <Clock />
     </Focusable>
   );
 }
