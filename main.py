@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import re
 
 import decky
 
@@ -8,7 +9,6 @@ from hltb_client import HltbClient
 
 SETTINGS_FILE = os.path.join(decky.DECKY_PLUGIN_SETTINGS_DIR, "settings.json")
 HLTB_CACHE_FILE = os.path.join(decky.DECKY_PLUGIN_RUNTIME_DIR, "hltb_cache.json")
-
 
 class Plugin:
     hltb: HltbClient | None = None

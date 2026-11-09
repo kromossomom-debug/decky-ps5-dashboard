@@ -1,3 +1,4 @@
+import { useSteamClockFormat } from "./hooks/useSteamClockFormat";
 import { Focusable, GamepadButton, GamepadEvent, Navigation } from "@decky/ui";
 import { ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { IoLibrary } from "react-icons/io5";
@@ -67,7 +68,40 @@ function CardsTab({ cards }: { cards: CardDef[] }) {
   );
 }
 
-/** Search, settings, power and the profile picture: the PS5's top right corner. */
+/**
+ * The hour cycle to display in: SteamOS' "24-hour clock" toggle wins over the locale default, so we
+ * use the Steam Client's settings via a hook instead of guessing from the locale.
+ */
+function formatTime(now: Date, is24Hour: boolean): string {
+  try {
+    const options: Intl.DateTimeFormatOptions = is24Hour
+      ? { hour: "2-digit", minute: "2-digit", hourCycle: "h23" }
+      : { hour: "numeric", minute: "2-digit", hour12: true };
+    return new Intl.DateTimeFormat(undefined, options).format(now);
+  } catch {
+    return now.toTimeString().slice(0, 5);
+  }
+}
+
+/** Live clock: ticks every second but only re-renders when the displayed minute actually changes. */
+function useClock(is24Hour: boolean): string {
+  const [time, setTime] = useState(() => formatTime(new Date(), is24Hour));
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      const next = formatTime(new Date(), is24Hour);
+      setTime((prev) => (prev === next ? prev : next));
+    }, 1000);
+    return () => window.clearInterval(id);
+  }, [is24Hour]);
+  return time;
+}
+
+function Clock() {
+  const is24Hour = useSteamClockFormat();
+  return <span className="psd-clock">{useClock(is24Hour)}</span>;
+}
+
+/** The time plus search, settings, power and the profile picture: the PS5's top right corner. */
 function TopIcons() {
   const me = useMemo(persona, []);
   return (
@@ -80,6 +114,7 @@ function TopIcons() {
         label={me.name || t.profile}
         onActivate={steamWeb(PROFILE_URL)}
       />
+      <Clock />
     </Focusable>
   );
 }
