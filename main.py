@@ -9,12 +9,6 @@ from hltb_client import HltbClient
 
 SETTINGS_FILE = os.path.join(decky.DECKY_PLUGIN_SETTINGS_DIR, "settings.json")
 HLTB_CACHE_FILE = os.path.join(decky.DECKY_PLUGIN_RUNTIME_DIR, "hltb_cache.json")
-# Where Steam keeps the per-account settings; first the SteamOS location, then the loader's own home.
-STEAM_USERDATA_DIRS = (
-    "/home/steam/.local/share/Steam/steamapps/userdata",
-    os.path.expanduser("~/.local/share/Steam/steamapps/userdata"),
-)
-
 
 class Plugin:
     hltb: HltbClient | None = None
@@ -47,14 +41,6 @@ class Plugin:
         except Exception as e:
             decky.logger.error(f"Could not save settings: {e}")
             return False
-
-    async def get_24hour(self) -> bool | None:
-        """Steam's 24-hour clock toggle (Settings > Time and date), or None when it was never saved.
-
-        SteamOS stores it per account in localconfig.vdf and it can differ from the locale's
-        default, so the frontend can't derive it from Intl alone.
-        """
-        return await asyncio.get_running_loop().run_in_executor(None, self._read_24hour)
 
     async def _main(self):
         decky.logger.info("PS5 Dashboard loaded")
