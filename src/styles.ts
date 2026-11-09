@@ -123,9 +123,17 @@ export const PS5_CSS = `
   height: var(--psd-big); padding: 0 4vw;
   transition: transform 340ms cubic-bezier(0.22, 0.8, 0.24, 1); will-change: transform;
 }
-/* Bottom padding keeps the cards clear of Steam's button-hint footer. */
+/* Bottom padding keeps the cards clear of Steam's button-hint footer. The height is chosen so the
+   cards' bottom edge stays at its 100%-scale screen position (76vh + 46px from the top: the 100%
+   first screen minus the 7vh padding) at every uiScale. That matters because the zoom grows every
+   vh of content while the footer is a Steam overlay that doesn't zoom, so a screen-filling hero
+   would push the cards into the footer; a plain 57vh hero pushes them below the fold. The hero's
+   empty space absorbs the excess; 46px + 19vh is .psd-top-space (46px + 8vh) plus the home row
+   (18vh, margin-top 0) minus the padding. */
 .psd-hero {
-  position: relative; height: 57vh; padding: 0 4vw 7vh;
+  position: relative;
+  height: min(57vh, calc((76vh + 46px) / var(--psd-scale, 1) - 46px - 19vh));
+  padding: 0 4vw 7vh;
   display: flex; flex-direction: column; justify-content: flex-end;
 }
 .psd-info { animation: psd-rise 400ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
@@ -141,6 +149,11 @@ export const PS5_CSS = `
 }
 .psd-info-sub { margin-top: 1.4vh; font-size: 2vh; opacity: 0.88; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
 .psd-buttons { display: flex; align-items: center; gap: 1.6vh; margin-top: 2.4vh; }
+/* At high uiScale the capped hero can be shorter than its content; the bottom-aligned overflow would
+   spill up over the home row, so the logo (the only oversized piece) is allowed to flex down while
+   the buttons and cards keep their size. */
+.psd-info-logo, .psd-info-icon, .psd-info-title { min-height: 0; }
+.psd-info-sub, .psd-buttons, .psd-infocards { flex-shrink: 0; }
 
 /* ---------- info cards under Play (HowLongToBeat, playtime, reviews, achievements) ---------- */
 .psd-infocards { display: flex; align-items: stretch; gap: 1.6vh; margin-top: 2.6vh; }
