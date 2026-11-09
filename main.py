@@ -56,42 +56,6 @@ class Plugin:
         """
         return await asyncio.get_running_loop().run_in_executor(None, self._read_24hour)
 
-    @staticmethod
-    def _read_24hour() -> bool | None:
-        for base in STEAM_USERDATA_DIRS:
-            try:
-                profiles = [d for d in os.listdir(base) if os.path.isdir(os.path.join(base, d))]
-            except OSError:
-                continue
-            if not profiles:
-                continue
-            if len(profiles) > 1:
-                # More than one account: read the profile Steam wrote to most recently.
-                def mtime(name: str) -> float:
-                    try:
-                        return os.stat(os.path.join(base, name, "config", "localconfig.vdf")).st_mtime
-                    except OSError:
-                        return 0.0
-
-                profiles.sort(key=mtime, reverse=True)
-            for name in profiles:
-                vdf = os.path.join(base, name, "config", "localconfig.vdf")
-                try:
-                    with open(vdf, "r", encoding="utf-8", errors="replace") as f:
-                        text = f.read()
-                except OSError:
-                    continue
-                # b24HourClock is not a plain VDF key: it lives inside the FriendsUIJSON value,
-                # a JSON string the VDF stores with escaped quotes ("{\"b24HourClock\":true,...}").
-                # Steam serialises it as a JSON boolean, but we also accept 0/1 to be safe.
-                match = re.search(r'\\"b24HourClock\":"\s*:\s*(true|false|[01])', text)
-                if match:
-                    return match.group(1) in ("true", "1")
-            # Profiles exist but the toggle was never saved: let the locale decide.
-            return None
-        decky.logger.warning("PS5 Dashboard: Steam userdata not found, using the locale's clock format")
-        return None
-
     async def _main(self):
         decky.logger.info("PS5 Dashboard loaded")
 
