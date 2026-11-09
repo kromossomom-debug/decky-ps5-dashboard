@@ -40,6 +40,8 @@ const ko: Strings = {
   cleanHomeDesc: "최근 게임 아래의 새 소식, 친구, 추천을 숨깁니다.",
   hideBottomBarLabel: "하단 바 숨기기",
   hideBottomBarDesc: "화면 아래쪽의 컨트롤러 버튼 안내 바(A, B, X, Y)를 숨깁니다.",
+  hideTopStatusLabel: "상단바 상태 숨기기",
+  hideTopStatusDesc: "시계, Wi-Fi, 배터리, 아바타 아이콘을 Steam 자체 상단바에서 숨깁니다. PS5 바에 이미 표시되기 때문입니다. PS5 홈 화면이 켜져 있을 때만 적용됩니다.",
   fontLabel: "PlayStation 스타일 글꼴 (SST)",
   resetDefaults: "기본값으로 재설정",
   supportSection: "프로젝트 후원",

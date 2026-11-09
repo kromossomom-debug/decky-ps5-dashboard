@@ -40,6 +40,8 @@ const ja: Strings = {
   cleanHomeDesc: "最近のゲームの下にある新着情報、フレンド、おすすめを非表示にします。",
   hideBottomBarLabel: "下部のバーを隠す",
   hideBottomBarDesc: "画面下部のコントローラーボタンのヒントバー（A、B、X、Y）を非表示にします。",
+  hideTopStatusLabel: "トップバーのステータスを隠す",
+  hideTopStatusDesc: "時計、Wi-Fi、バッテリー、アバターを Steam 自身のトップバーから隠します。PS5 のバーにはもう表示されているため。PS5 ホームが有効な場合のみ適用されます。",
   fontLabel: "PlayStation風フォント（SST）",
   resetDefaults: "初期設定に戻す",
   supportSection: "プロジェクトを支援",

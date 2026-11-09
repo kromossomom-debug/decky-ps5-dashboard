@@ -40,6 +40,8 @@ const zhTW: Strings = {
   cleanHomeDesc: "隱藏最近遊戲下方的最新消息、好友和推薦。",
   hideBottomBarLabel: "隱藏底部列",
   hideBottomBarDesc: "隱藏畫面底部的控制器按鈕提示列（A、B、X、Y）。",
+  hideTopStatusLabel: "隱藏頂列狀態",
+  hideTopStatusDesc: "隱藏 Steam 自帶頂列上的時鐘、Wi-Fi、電池和頭像，PS5 列已經顯示了它們。僅在啟用 PS5 主畫面時生效。",
   fontLabel: "PlayStation 風格字型（SST）",
   resetDefaults: "還原預設值",
   supportSection: "支持本專案",

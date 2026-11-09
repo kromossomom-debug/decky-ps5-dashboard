@@ -44,6 +44,8 @@ const uk: Strings = {
   cleanHomeDesc: "Приховує «Що нового», «Друзі» та «Рекомендації» під нещодавніми іграми.",
   hideBottomBarLabel: "Приховати нижню панель",
   hideBottomBarDesc: "Приховує панель підказок кнопок контролера (A, B, X, Y) унизу екрана.",
+  hideTopStatusLabel: "Сховати статус верхньої панелі",
+  hideTopStatusDesc: "Сховує годинник, Wi-Fi, батарею та аватар у власній верхній панелі Steam — панель PS5 уже показує їх. Тільки коли увімкнено домашній екран PS5.",
   fontLabel: "Шрифт у стилі PlayStation (SST)",
   resetDefaults: "Скинути налаштування",
   supportSection: "Підтримати проєкт",

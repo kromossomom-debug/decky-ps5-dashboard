@@ -74,7 +74,7 @@ function render() {
   setCurrentSettings(settings);
   syncHomePatch();
   if (unloaded) return;
-  if (settings.enabled) applyCss(buildCss(settings, classes.sel), settings.palette ? accentColor(settings.accent) : null);
+  if (settings.enabled) applyCss(buildCss(settings, classes), settings.palette ? accentColor(settings.accent) : null);
   else removeCss();
 }
 
@@ -84,7 +84,7 @@ function startClassRetry() {
     tries++;
     // Rescan webpack: Steam loads some modules (and extra copies of others) only when they're first shown.
     const next = resolveClasses(true);
-    if (buildCss(settings, next.sel) !== buildCss(settings, classes.sel)) {
+    if (buildCss(settings, next) !== buildCss(settings, classes)) {
       classes = next;
       render();
     }
@@ -272,6 +272,14 @@ function Content() {
             description={t.hideBottomBarDesc}
             checked={st.hideBottomBar}
             onChange={(hideBottomBar) => change({ hideBottomBar })}
+          />
+        </PanelSectionRow>
+        <PanelSectionRow>
+          <ToggleField
+            label={t.hideTopStatusLabel}
+            description={t.hideTopStatusDesc}
+            checked={st.hideTopStatus}
+            onChange={(hideTopStatus) => change({ hideTopStatus })}
           />
         </PanelSectionRow>
         <PanelSectionRow>

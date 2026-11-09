@@ -40,6 +40,8 @@ const fr: Strings = {
   cleanHomeDesc: "Masque Nouveautés, Amis et Recommandations sous les jeux récents.",
   hideBottomBarLabel: "Masquer la barre du bas",
   hideBottomBarDesc: "Masque la barre d'aide des boutons de la manette (A, B, X, Y) en bas de l'écran.",
+  hideTopStatusLabel: "Masquer le statut de la barre du haut",
+  hideTopStatusDesc: "Masque l'horloge, le Wi-Fi, la batterie et l'avatar de la barre du haut de Steam, que la barre PS5 affiche déjà. Uniquement quand l'écran d'accueil PS5 est actif.",
   fontLabel: "Police style PlayStation (SST)",
   resetDefaults: "Rétablir les valeurs par défaut",
   supportSection: "Soutenir le projet",

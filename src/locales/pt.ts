@@ -41,6 +41,8 @@ const pt: Strings = {
   cleanHomeDesc: "Esconde Novidades, Amigos e Recomendados abaixo dos jogos recentes.",
   hideBottomBarLabel: "Ocultar barra inferior",
   hideBottomBarDesc: "Esconde a barra de botões do controle (A, B, X, Y) que aparece na parte de baixo da tela.",
+  hideTopStatusLabel: "Ocultar status da barra superior",
+  hideTopStatusDesc: "Oculta o relógio, o Wi-Fi, a bateria e o avatar da própria barra superior do Steam, que a barra da PS5 já mostra. Só com a tela inicial da PS5 ativada.",
   fontLabel: "Fonte estilo PlayStation (SST)",
   resetDefaults: "Restaurar padrões",
   supportSection: "Apoie o projeto",

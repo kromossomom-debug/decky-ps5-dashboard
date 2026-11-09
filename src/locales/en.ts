@@ -38,6 +38,8 @@ const en = {
   cleanHomeDesc: "Hides What's New, Friends and Recommended below the recent games.",
   hideBottomBarLabel: "Hide bottom bar",
   hideBottomBarDesc: "Hides the controller button hints bar (A, B, X, Y) at the bottom of the screen.",
+  hideTopStatusLabel: "Hide top bar status",
+  hideTopStatusDesc: "Hides the clock, WiFi, battery and avatar from Steam's own top bar, which the PS5 bar already shows. Only while the PS5 home is on.",
   fontLabel: "PlayStation-style font (SST)",
   resetDefaults: "Reset to defaults",
   supportSection: "Support the project",

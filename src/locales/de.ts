@@ -40,6 +40,8 @@ const de: Strings = {
   cleanHomeDesc: "Blendet Neuigkeiten, Freunde und Empfehlungen unter den zuletzt gespielten Spielen aus.",
   hideBottomBarLabel: "Untere Leiste ausblenden",
   hideBottomBarDesc: "Blendet die Leiste mit den Controller-Tastenhinweisen (A, B, X, Y) unten am Bildschirm aus.",
+  hideTopStatusLabel: "Statusleiste ausblenden",
+  hideTopStatusDesc: "Blendet die Uhr, WLAN, Akku und Avatar in Steam eigener Oberleiste aus; die PS5-Leiste zeigt sie bereits. Nur, solange die PS5-Startansicht an ist.",
   fontLabel: "Schrift im PlayStation-Stil (SST)",
   resetDefaults: "Auf Standard zurücksetzen",
   supportSection: "Projekt unterstützen",

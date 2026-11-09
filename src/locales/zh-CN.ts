@@ -40,6 +40,8 @@ const zhCN: Strings = {
   cleanHomeDesc: "隐藏最近游戏下方的新闻、好友和推荐。",
   hideBottomBarLabel: "隐藏底部栏",
   hideBottomBarDesc: "隐藏屏幕底部的手柄按键提示栏（A、B、X、Y）。",
+  hideTopStatusLabel: "隐藏顶栏状态",
+  hideTopStatusDesc: "隐藏 Steam 自带顶栏上的时钟、Wi-Fi、电池和头像，PS5 栏已经显示了它们。仅在启用 PS5 主屏幕时生效。",
   fontLabel: "PlayStation 风格字体（SST）",
   resetDefaults: "恢复默认设置",
   supportSection: "支持本项目",

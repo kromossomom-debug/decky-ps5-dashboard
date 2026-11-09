@@ -22,6 +22,8 @@ export interface Settings {
   hideShelves: boolean;
   /** Hide the bottom button hint footer bar (A, B, X, Y). */
   hideBottomBar: boolean;
+  /** Hide the clock, WiFi, battery and avatar from Steam's own top bar (the PS5 bar already shows them). */
+  hideTopStatus: boolean;
   /** Use an SST (PlayStation) style font. */
   font: boolean;
   /** Cards under the Play button: HowLongToBeat, achievements, playtime, reviews. */
@@ -61,6 +63,7 @@ export const DEFAULT_SETTINGS: Settings = {
   controlCenter: true,
   hideShelves: false,
   hideBottomBar: false,
+  hideTopStatus: true,
   font: true,
   infoCards: true,
   hltb: true,

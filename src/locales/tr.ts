@@ -40,6 +40,8 @@ const tr: Strings = {
   cleanHomeDesc: "Son oyunların altındaki Yenilikler, Arkadaşlar ve Önerilenler'i gizler.",
   hideBottomBarLabel: "Alt çubuğu gizle",
   hideBottomBarDesc: "Ekranın altındaki kumanda düğmesi ipuçları çubuğunu (A, B, X, Y) gizler.",
+  hideTopStatusLabel: "Üst çubuk durumunu gizle",
+  hideTopStatusDesc: "Saatin, Wi-Fi, pil ve avatarı Steam'in kendi üst çubuğundan gizler; PS5 çubuğu zaten gösterir. Yalnızca PS5 ana ekranı açıkken.",
   fontLabel: "PlayStation tarzı yazı tipi (SST)",
   resetDefaults: "Varsayılanlara dön",
   supportSection: "Projeyi destekle",

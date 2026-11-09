@@ -44,6 +44,8 @@ const pl: Strings = {
   cleanHomeDesc: "Ukrywa Nowości, Znajomych i Polecane pod ostatnimi grami.",
   hideBottomBarLabel: "Ukryj dolny pasek",
   hideBottomBarDesc: "Ukrywa pasek podpowiedzi przycisków kontrolera (A, B, X, Y) na dole ekranu.",
+  hideTopStatusLabel: "Ukryj pasek statusu u góry",
+  hideTopStatusDesc: "Ukrywa zegar, Wi-Fi, baterię i awatar z własnego paska górnego Steam, które pasek PS5 już pokazuje. Tylko gdy ekran startowy PS5 jest włączony.",
   fontLabel: "Czcionka w stylu PlayStation (SST)",
   resetDefaults: "Przywróć domyślne",
   supportSection: "Wesprzyj projekt",

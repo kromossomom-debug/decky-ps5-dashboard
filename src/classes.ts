@@ -41,7 +41,13 @@ export type Selectors = Record<ModuleName, Record<string, string>>;
 export interface ResolvedClasses {
   sel: Selectors;
   missing: ModuleName[];
+  /** The native top bar's status icons (WiFi, battery, avatar) as one selector, or an inert one when none is found. */
+  topStatus: string;
 }
+
+/** Key names of the native top bar's status icons. Their hashed classes change with every client update,
+ * and the key names are the only stable part, so the selector is built by scanning them at runtime. */
+const TOP_STATUS_KEY = /wifi|wireless|network|internet|signal|connect|battery|charge|percent|avatar|persona/i;
 
 type ClassModule = Record<string, string>;
 
@@ -69,6 +75,9 @@ export function resolveClasses(rescan = false): ResolvedClasses {
   const modules = allClassModules(rescan);
   const sel = {} as Selectors;
   const missing: ModuleName[] = [];
+  // The native top bar's status icons (WiFi, battery, avatar): their key names are stable, the hashes aren't,
+  // so the selector is scanned out of the header module at runtime. Inert until something matches.
+  let topStatus = MISSING;
   for (const [name, keys] of Object.entries(MODULE_KEYS) as [ModuleName, readonly string[]][]) {
     // Every copy of the module, not just the first: Steam bundles the same component more than once
     // and Game Mode doesn't always use the copy that comes first.
@@ -83,6 +92,19 @@ export function resolveClasses(rescan = false): ResolvedClasses {
         return classes.length === 1 ? classes[0] : `:is(${classes.join(", ")})`;
       },
     });
+    if (name === "header" && found.length > 0) {
+      // Every hash in the header module whose key looks like a status icon. The clock is excluded on purpose:
+      // it's a known stable key, so it's hidden via `header.Clock` instead of the scan.
+      const hashes = new Set<string>();
+      for (const m of found) {
+        for (const key of Object.keys(m)) {
+          if (TOP_STATUS_KEY.test(key)) hashes.add(m[key]);
+        }
+      }
+      if (hashes.size > 0) {
+        topStatus = `:is(${[...hashes].map((h) => `.${CSS.escape(h)}`).join(", ")})`;
+      }
+    }
   }
-  return { sel, missing };
+  return { sel, missing, topStatus };
 }

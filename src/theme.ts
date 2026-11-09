@@ -1,4 +1,4 @@
-import { Selectors } from "./classes";
+import { ResolvedClasses } from "./classes";
 import { Settings, accentColor } from "./settings";
 
 /**
@@ -17,7 +17,8 @@ const FONT_FACES: [number, string[]][] = [
 ];
 
 /** Builds the whole theme stylesheet. Every Steam class comes from `s`, resolved at runtime. */
-export function buildCss(st: Settings, s: Selectors): string {
+export function buildCss(st: Settings, r: ResolvedClasses): string {
+  const s = r.sel;
   const {
     ui,
     recent,
@@ -141,6 +142,17 @@ ${header.CurrentUserAvatar}, ${header.CurrentUserAvatar} img, ${header.Avatar}, 
 ${header.HeaderOpaque} {
   background: rgba(5,7,13,0.9) !important;
 }`);
+
+  // ---------- Hide the native top bar's status icons (duplicated by the PS5 bar) ----------
+  // The avatar, WiFi and battery come from the runtime `topStatus` scan; the clock is a stable key.
+  // Only when the PS5 home is on: otherwise the native bar is the only status bar, so the search icon stays.
+  if (st.ps5Home && st.hideTopStatus) {
+    parts.push(`
+${r.topStatus},
+${header.Clock} {
+  display: none !important;
+}`);
+  }
 
   // ---------- Steam's own library: rounded capsules, PS5 focus, pill tabs on a navy page ----------
   // Optional, so it can be left to Steam (or to plugins like TabMaster that rework the library).
