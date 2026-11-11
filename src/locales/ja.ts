@@ -29,6 +29,8 @@ const ja: Strings = {
   heroSpaceLabel: "アートの表示スペース",
   heroSpaceDesc: "Steamのホーム画面のみ（PS5ホーム画面がオフのとき）。",
   radiusLabel: "タイルの角の丸み",
+  uiScaleLabel: "UIの拡大率",
+  uiScaleDesc: "PS5の画面を拡大・縮小します。小さい携帯型ディスプレイや大きなテレビで便利です。デフォルトは100%です。",
   layoutSection: "レイアウト",
   controlCenterLabel: "コントロールセンター風のメニュー",
   controlCenterDesc: "Steamメニューとクイックアクセスを、暗いパネル、丸い角、白い選択項目にします。",

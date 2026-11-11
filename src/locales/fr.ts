@@ -29,6 +29,8 @@ const fr: Strings = {
   heroSpaceLabel: "Espace pour l'illustration",
   heroSpaceDesc: "Uniquement pour l'accueil de Steam (écran d'accueil PS5 désactivé).",
   radiusLabel: "Arrondi des tuiles",
+  uiScaleLabel: "Taille de l'interface",
+  uiScaleDesc: "Agrandit ou réduit les écrans PS5 — pratique sur un petit écran portable ou un grand téléviseur. 100 % par défaut.",
   layoutSection: "Disposition",
   controlCenterLabel: "Menus style centre de contrôle",
   controlCenterDesc: "Menu Steam et accès rapide avec un panneau sombre, des coins arrondis et l'élément sélectionné en blanc.",

@@ -29,6 +29,8 @@ const es: Strings = {
   heroSpaceLabel: "Espacio para el arte",
   heroSpaceDesc: "Solo para el inicio de Steam (con la pantalla de inicio PS5 desactivada).",
   radiusLabel: "Redondeo de los bloques",
+  uiScaleLabel: "Escala de la interfaz",
+  uiScaleDesc: "Aumenta o reduce los paneles de PS5: útil en pantallas pequeñas de portátil o grandes de televisión. 100 % es el valor predeterminado.",
   layoutSection: "Diseño",
   controlCenterLabel: "Menús estilo centro de control",
   controlCenterDesc: "Menú Steam y acceso rápido con panel oscuro, esquinas redondeadas y el elemento seleccionado en blanco.",

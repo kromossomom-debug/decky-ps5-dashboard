@@ -29,6 +29,8 @@ const zhTW: Strings = {
   heroSpaceLabel: "美術圖空間",
   heroSpaceDesc: "僅適用於 Steam 首頁（關閉 PS5 主畫面時）。",
   radiusLabel: "圖塊圓角",
+  uiScaleLabel: "介面縮放",
+  uiScaleDesc: "放大或縮小 PS5 介面 — 適合小型掌機或大型電視螢幕。預設 100%。",
   layoutSection: "版面",
   controlCenterLabel: "控制中心風格選單",
   controlCenterDesc: "Steam 選單和快速存取使用深色面板、圓角和白色選取項目。",
